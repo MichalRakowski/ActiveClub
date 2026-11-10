@@ -6,8 +6,8 @@ ActiveClub is a fitness club management system I built for my engineering degree
 
 ### Web portal
 
-desktop-app.png
+web-portal.png
 
 ### Desktop application
 
-![ActiveClub staff desktop application](docs/screenshots/desktop-app.png)
+![ActiveClub staff desktop application] web-portal.png
