@@ -10,4 +10,4 @@ web-portal.png
 
 ### Desktop application
 
-![ActiveClub staff desktop application] web-portal.png
+![ActiveClub staff desktop application](desktop-app.png)
