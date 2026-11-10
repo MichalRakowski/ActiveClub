@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2477bd7e62d64982a0f0768886b9c7e0" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="ActiveClubModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.GodzinyOtwarcia" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Kluby" Width="1.5" PointX="0.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.MetodyPlatnosci" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Rabaty" Width="1.5" PointX="12" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.RaportyDefinicje" Width="1.5" PointX="8.75" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.RodzajeCzlonkostwa" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.RodzajeZajec" Width="1.5" PointX="3" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Role" Width="1.5" PointX="5.75" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Sale" Width="1.5" PointX="3" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Trenerzy" Width="1.5" PointX="8" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Udogodnienia" Width="1.5" PointX="3" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.Uprawnienia" Width="1.5" PointX="8" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ActiveClubModel.UzytkownikRole" Width="1.5" PointX="8" PointY="37.625" IsExpanded="true" />
+        <AssociationConnector Association="ActiveClubModel.FK_GodzinyOtwarciaNew_K" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveClubModel.FK_SaleNew_K" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveClubModel.FK_URNew_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveClubModel.KlubUdogodnienie" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveClubModel.RolaUprawnienie" ManuallyRouted="false" />
+        <AssociationConnector Association="ActiveClubModel.TrenerKlub" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ActiveClubModel.Uzytkownicy" Width="1.5" PointX="0.75" PointY="26.875" />
+        <AssociationConnector Association="ActiveClubModel.FK_TrenerzyNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_URNew_Uzytk" />
+        <EntityTypeShape EntityType="ActiveClubModel.CzlonkostwaUzytkownika" Width="1.5" PointX="3" PointY="20.125" />
+        <EntityTypeShape EntityType="ActiveClubModel.DostepnoscTrenera" Width="1.5" PointX="10.25" PointY="25" />
+        <EntityTypeShape EntityType="ActiveClubModel.HarmonogramZajec" Width="1.5" PointX="10.25" PointY="28.625" />
+        <EntityTypeShape EntityType="ActiveClubModel.LogiLogowan" Width="1.5" PointX="3" PointY="32.625" />
+        <EntityTypeShape EntityType="ActiveClubModel.Opinie" Width="1.5" PointX="6" PointY="21.25" />
+        <EntityTypeShape EntityType="ActiveClubModel.RaportyWygenerowane" Width="1.5" PointX="11" PointY="33.5" />
+        <EntityTypeShape EntityType="ActiveClubModel.RejestracjeNaZajecia" Width="1.5" PointX="12.5" PointY="28.5" />
+        <EntityTypeShape EntityType="ActiveClubModel.Zamowienia" Width="1.5" PointX="9" PointY="20.125" />
+        <AssociationConnector Association="ActiveClubModel.FK_CUNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_CUNew_R" />
+        <AssociationConnector Association="ActiveClubModel.FK_CUNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_DTNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_DTNew_T" />
+        <AssociationConnector Association="ActiveClubModel.FK_HZNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_HZNew_R" />
+        <AssociationConnector Association="ActiveClubModel.FK_HZNew_S" />
+        <AssociationConnector Association="ActiveClubModel.FK_HZNew_T" />
+        <AssociationConnector Association="ActiveClubModel.FK_RNZNew_H" />
+        <AssociationConnector Association="ActiveClubModel.FK_OpinieNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_ZNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_LogiLogowanNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_ZNew_MP" />
+        <AssociationConnector Association="ActiveClubModel.FK_OpinieNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_RWNew_RD" />
+        <AssociationConnector Association="ActiveClubModel.FK_RWNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_RNZNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_ZNew_U" />
+        <EntityTypeShape EntityType="ActiveClubModel.PozycjeZamowienia" Width="1.5" PointX="11.25" PointY="21.625" />
+        <EntityTypeShape EntityType="ActiveClubModel.UzycieRabatu" Width="1.5" PointX="14.25" PointY="22.875" />
+        <AssociationConnector Association="ActiveClubModel.FK_PZNew_Z" />
+        <AssociationConnector Association="ActiveClubModel.FK_URabatNew_R" />
+        <AssociationConnector Association="ActiveClubModel.FK_URabatNew_U" />
+        <AssociationConnector Association="ActiveClubModel.FK_URabatNew_Z" />
+        <EntityTypeShape EntityType="ActiveClubModel.RezerwacjeTrenera" Width="1.5" PointX="15.25" PointY="27.125" />
+        <EntityTypeShape EntityType="ActiveClubModel.ZdjeciaKlubu" Width="1.5" PointX="3" PointY="16.5" />
+        <AssociationConnector Association="ActiveClubModel.FK_RTNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_ZdjeciaKlubuNew_K" />
+        <AssociationConnector Association="ActiveClubModel.FK_RTNew_T" />
+        <AssociationConnector Association="ActiveClubModel.FK_RTNew_U" />
+        <EntityTypeShape EntityType="ActiveClubModel.Aktualnosci" Width="1.5" PointX="3.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

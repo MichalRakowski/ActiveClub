@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Jak zacząć?";
+}
+
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Jak zacząć?</h1>
+        <p class="text-muted">
+            Kilka prostych kroków, aby rozpocząć treningi w ActiveClub
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 fw-bold text-primary mb-3">1</div>
+                    <h4 class="fw-bold">Wybierz klub</h4>
+                    <p class="text-muted mb-0">
+                        Znajdź lokalizację najwygodniejszą dla siebie i sprawdź ofertę klubu.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 fw-bold text-primary mb-3">2</div>
+                    <h4 class="fw-bold">Wybierz karnet</h4>
+                    <p class="text-muted mb-0">
+                        Dopasuj rodzaj członkostwa do swoich potrzeb i częstotliwości treningów.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 fw-bold text-primary mb-3">3</div>
+                    <h4 class="fw-bold">Załóż konto</h4>
+                    <p class="text-muted mb-0">
+                        Zarejestruj się i aktywuj swoje członkostwo, aby uzyskać dostęp do klubu.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body text-center p-4">
+                    <div class="display-6 fw-bold text-primary mb-3">4</div>
+                    <h4 class="fw-bold">Zacznij trening</h4>
+                    <p class="text-muted mb-0">
+                        Korzystaj z siłowni, zajęć grupowych i wsparcia trenerów od pierwszego dnia.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5 g-4 align-items-stretch">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body p-4 p-lg-5">
+                    <h3 class="fw-bold mb-3">Twój start w ActiveClub</h3>
+                    <p class="text-muted">
+                        Rozpoczęcie treningów nie musi być trudne. Wystarczy wybrać klub,
+                        dopasować karnet i zacząć działać we własnym tempie.
+                    </p>
+                    <p class="text-muted mb-0">
+                        Jeśli dopiero zaczynasz, możesz skorzystać z pomocy trenera,
+                        zajęć grupowych lub gotowych planów treningowych.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body p-4 d-flex flex-column">
+                    <h4 class="fw-bold mb-3">Gotowy na start?</h4>
+                    <p class="text-muted flex-grow-1">
+                        Wybierz klub i rozpocznij swoją drogę do lepszej formy już dziś.
+                    </p>
+
+                    <a asp-controller="Karnety"
+                       asp-action="KupKarnet"
+                       class="btn btn-primary btn-lg">
+                        Kup karnet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

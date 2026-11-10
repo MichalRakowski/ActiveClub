@@ -1,0 +1,68 @@
+﻿@using ActiveClub.Shared.DTOs.Kluby
+@using ActiveClub.Shared.DTOs.Trenerzy
+
+@{
+    ViewData["Title"] = "Umów trening personalny";
+
+    var kluby = ViewBag.Kluby as List<KlubDto> ?? new();
+    var trenerzy = ViewBag.Trenerzy as List<TrenerDto> ?? new();
+    int? wybranyKlubId = ViewBag.KlubId as int?;
+}
+
+<section class="container my-5">
+    <h1 class="fw-bold mb-4">Umów trening personalny</h1>
+
+    <form method="get" asp-action="UmowTrening" class="card p-4 mb-4">
+        <label class="form-label">Wybierz klub</label>
+
+        <select name="klubId" class="form-select mb-3" onchange="this.form.submit()">
+            <option value="">-- wybierz klub --</option>
+
+            @foreach (var klub in kluby)
+            {
+                <option value="@klub.KlubId" selected="@(wybranyKlubId == klub.KlubId)">
+                    @klub.Nazwa
+                </option>
+            }
+        </select>
+    </form>
+
+    @if (wybranyKlubId.HasValue)
+    {
+        <form method="post" asp-action="UmowTrening" class="card p-4">
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="klubId" value="@wybranyKlubId" />
+
+            <div class="mb-3">
+                <label class="form-label">Trener</label>
+                <select name="trenerId" class="form-select" required>
+                    <option value="">-- wybierz trenera --</option>
+
+                    @foreach (var trener in trenerzy)
+                    {
+                        <option value="@trener.TrenerId">
+                            @trener.ImieNazwisko
+                            @if (trener.StawkaZaGodzine.HasValue)
+                            {
+                                @($" - {trener.StawkaZaGodzine:0.00} zł/h")
+                            }
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Data i godzina</label>
+                <input type="datetime-local"
+                       name="startAt"
+                       class="form-control"
+                       required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Umów trening
+            </button>
+        </form>
+    }
+</section>

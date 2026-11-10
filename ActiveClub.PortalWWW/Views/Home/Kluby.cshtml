@@ -1,0 +1,127 @@
+﻿@model IReadOnlyList<ActiveClub.Shared.DTOs.Kluby.KlubDto>
+
+@{
+    ViewData["Title"] = "Nasze kluby";
+    var miasta = ViewBag.Miasta as List<string> ?? new();
+    var q = Context.Request.Query["q"].ToString();
+    var miasto = Context.Request.Query["miasto"].ToString();
+}
+
+<section class="container my-5">
+
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Nasze kluby</h1>
+        <p class="text-muted">Znajdź klub w swojej okolicy</p>
+    </div>
+
+    <form method="get" class="card shadow-sm border-0 rounded-4 p-4 mb-4">
+        <div class="row g-3 align-items-end">
+            <div class="col-lg-6">
+                <label class="form-label" for="q">Szukaj</label>
+                <input id="q"
+                       name="q"
+                       value="@q"
+                       class="form-control form-control-lg"
+                       placeholder="Nazwa, miasto, ulica, kod..." />
+            </div>
+
+            <div class="col-lg-4">
+                <label class="form-label" for="miasto">Miasto</label>
+                <select id="miasto" name="miasto" class="form-select form-select-lg">
+                    <option value="">Wszystkie</option>
+                    @foreach (var m in miasta)
+                    {
+                        if (m == miasto)
+                        {
+                            <option value="@m" selected>@m</option>
+                        }
+                        else
+                        {
+                            <option value="@m">@m</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-lg-2 d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Szukaj
+                </button>
+            </div>
+        </div>
+    </form>
+
+    @if (Model?.Any() == true)
+    {
+        <div class="row g-4">
+            @foreach (var klub in Model)
+            {
+                var adresParts = new[]
+                {
+        klub.Miasto,
+        klub.Ulica
+        }
+                .Where(x => !string.IsNullOrWhiteSpace(x));
+
+                var adres = string.Join(", ", adresParts);
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body d-flex flex-column">
+
+                            <h5 class="fw-bold">@klub.Nazwa</h5>
+
+                            @if (!string.IsNullOrWhiteSpace(adres))
+                            {
+                                <div class="text-muted mb-2">
+                                    @adres
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(klub.KodPocztowy))
+                            {
+                                <div class="small text-muted mb-2">
+                                    @klub.KodPocztowy
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(klub.Opis))
+                            {
+                                <p class="text-muted">
+                                    @(klub.Opis.Length > 140
+                                        ? klub.Opis.Substring(0, 140) + "…"
+                                        : klub.Opis)
+                                </p>
+                            }
+
+                            <div class="mt-auto d-flex gap-2">
+                                <a asp-controller="Home"
+                                   asp-action="Klub"
+                                   asp-route-id="@klub.KlubId"
+                                   class="btn btn-outline-primary btn-sm">
+                                    Szczegóły
+                                </a>
+
+                                @if (!string.IsNullOrWhiteSpace(klub.Telefon))
+                                {
+                                    <a href="tel:@klub.Telefon"
+                                       class="btn btn-outline-secondary btn-sm">
+                                        Zadzwoń
+                                    </a>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center text-muted py-5">
+            Brak klubów spełniających kryteria.
+        </div>
+    }
+
+</section>

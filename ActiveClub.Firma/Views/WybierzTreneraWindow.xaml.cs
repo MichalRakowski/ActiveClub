@@ -1,0 +1,21 @@
+﻿using ActiveClub.Firma.ViewModels;
+using System.Windows;
+
+namespace ActiveClub.Firma.Views
+{
+    public partial class WybierzTreneraWindow : Window
+    {
+        public WybierzTreneraWindow(WybierzTreneraViewModel viewModel)
+        {
+            InitializeComponent();
+
+            DataContext = viewModel;
+
+            viewModel.Accepted += (_, _) =>
+            {
+                DialogResult = true;
+                Close();
+            };
+        }
+    }
+}

@@ -1,0 +1,220 @@
+﻿@using ActiveClub.Shared.DTOs.Kluby
+@using ActiveClub.Shared.DTOs.RodzajeCzlonkostwa
+
+@model RodzajCzlonkostwaDto
+
+@{
+    ViewData["Title"] = "Płatność";
+
+    var klub = ViewBag.Klub as KlubDto;
+
+    var imie = Context.Session.GetString("Imie");
+    var nazwisko = Context.Session.GetString("Nazwisko");
+}
+
+<section class="payment-hero">
+    <div class="container">
+        <div class="row align-items-center min-vh-30">
+            <div class="col-lg-8">
+                <span class="payment-badge">ActiveClub</span>
+
+                <h1>Finalizacja zakupu</h1>
+
+                <p>
+                    Sprawdź dane karnetu oraz swoje dane przed dokonaniem płatności.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="payment-section py-5">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- LEWA -->
+            <div class="col-lg-7">
+
+                <div class="payment-card">
+                    <h3 class="mb-4">Wybrany karnet</h3>
+
+                    <div class="mb-3">
+                        <div class="text-muted small">Karnet</div>
+                        <div class="fw-bold fs-4">@Model.Nazwa</div>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Opis))
+                    {
+                        <p class="text-muted">
+                            @Model.Opis
+                        </p>
+                    }
+
+                    <hr />
+
+                    <div class="mb-2">
+                        <span class="fw-semibold">Klub:</span>
+                        @klub?.Nazwa
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-semibold">Adres:</span>
+                        @klub?.Miasto, @klub?.Ulica
+                    </div>
+
+                    <div class="mb-2">
+                        <span class="fw-semibold">Typ:</span>
+                        @Model.TypRozliczenia
+                    </div>
+
+                    @if (Model.OkresDni.HasValue)
+                    {
+                        <div class="mb-2">
+                            <span class="fw-semibold">Okres:</span>
+                            @Model.OkresDni dni
+                        </div>
+                    }
+
+                    <div class="payment-price mt-4">
+                        @(Model.Cena.HasValue
+                            ? $"{Model.Cena.Value:0.00} zł"
+                            : "Cena ustalana indywidualnie")
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PRAWA -->
+            <div class="col-lg-5">
+
+                <form method="post"
+                      asp-controller="Karnety"
+                      asp-action="FinalizujPlatnosc">
+
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" name="klubId" value="@klub?.KlubId" />
+                    <input type="hidden" name="rodzajId" value="@Model.RodzajCzlonkostwaId" />
+
+                    <div class="payment-card">
+
+                        <div class="payment-step mb-4">
+                            <span>2</span>
+                            <h3 class="mb-0">Płatność i zgody</h3>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Imię i nazwisko</label>
+
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   value="@imie @nazwisko"
+                                   readonly />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Metoda płatności</label>
+
+                            <select class="form-select form-select-lg" required>
+                                <option value="">Wybierz metodę płatności</option>
+                                <option>Karta płatnicza</option>
+                                <option>BLIK</option>
+                                <option>Przelew online</option>
+                            </select>
+                        </div>
+
+                        <div class="payment-consents">
+
+                            <div class="form-check consent-all mb-4">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="allConsents">
+
+                                <label class="form-check-label fw-bold" for="allConsents">
+                                    Zaznacz wszystkie oświadczenia i zgody
+                                </label>
+                            </div>
+
+                            <div class="consent-box">
+                                <div class="form-check">
+
+                                    <input class="form-check-input consent-item"
+                                           type="checkbox"
+                                           id="zgoda1"
+                                           required>
+
+                                    <label class="form-check-label" for="zgoda1">
+                                        <strong>(Wymagana)</strong>
+                                        Wyrażam zgodę na cykliczne płatności kartą płatniczą.
+
+                                        <div class="small text-muted mt-1">
+                                            Pamiętaj, że dzięki tej metodzie Twoje płatności są bezpieczne!
+                                        </div>
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="consent-box">
+                                <div class="form-check">
+
+                                    <input class="form-check-input consent-item"
+                                           type="checkbox"
+                                           id="zgoda2"
+                                           required>
+
+                                    <label class="form-check-label" for="zgoda2">
+                                        <strong>(Wymagana)</strong>
+                                        Oświadczam, iż zapoznałem się z regulaminem usługi,
+                                        polityką prywatności oraz regulaminem siłowni i akceptuję ich treść.
+                                    </label>
+
+                                </div>
+                            </div>
+
+                            <div class="consent-box">
+                                <div class="form-check">
+
+                                    <input class="form-check-input consent-item"
+                                           type="checkbox"
+                                           id="zgoda3"
+                                           required>
+
+                                    <label class="form-check-label" for="zgoda3">
+                                        <strong>(Wymagana)</strong>
+                                        Zgadzam się na rozpoczęcie świadczenia usługi przed
+                                        upływem terminu do odstąpienia od umowy.
+                                    </label>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary btn-lg w-100 mt-4">
+                            Przejdź do płatności
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const allConsents = document.getElementById("allConsents");
+            const consentItems = document.querySelectorAll(".consent-item");
+
+            if (allConsents) {
+                allConsents.addEventListener("change", function () {
+                    consentItems.forEach(function (item) {
+                        item.checked = allConsents.checked;
+                    });
+                });
+            }
+        });
+    </script>
+}

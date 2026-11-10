@@ -1,0 +1,152 @@
+﻿@using ActiveClub.Shared.DTOs.Harmonogram
+@using ActiveClub.Shared.DTOs.Kluby
+@model IEnumerable<HarmonogramZajecListDto>
+
+@{
+    ViewData["Title"] = "Grafik zajęć grupowych";
+
+    var kluby = ViewBag.Kluby as List<KlubDto> ?? new();
+    int? wybranyKlubId = ViewBag.KlubId as int?;
+    DateTime dzien = ViewBag.Dzien != null ? (DateTime)ViewBag.Dzien : DateTime.Today;
+}
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Grafik zajęć grupowych</h1>
+        <p class="text-muted">
+            Wybierz klub i dzień, aby sprawdzić dostępne zajęcia
+        </p>
+    </div>
+
+    <form method="get" class="card shadow-sm border-0 rounded-4 p-4 mb-4 grafik-filter-card">
+        <div class="row g-3 align-items-end">
+
+            <div class="col-lg-5">
+                <label class="form-label fw-semibold">Klub</label>
+                <select name="klubId" class="form-select form-select-lg">
+                    <option value="">Wszystkie kluby</option>
+                    @foreach (var klub in kluby)
+                    {
+                        <option value="@klub.KlubId" selected="@(wybranyKlubId == klub.KlubId)">
+                            @klub.Nazwa
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="form-label fw-semibold">Dzień</label>
+                <input type="date"
+                       name="dzien"
+                       value="@dzien.ToString("yyyy-MM-dd")"
+                       class="form-control form-control-lg" />
+            </div>
+
+            <div class="col-lg-3 d-grid">
+                <button class="btn btn-primary btn-lg">
+                    Pokaż grafik
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var h in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <article class="grafik-card h-100">
+
+                        <div class="grafik-top mb-3">
+                            <span class="grafik-hour">
+                                @h.StartAt.ToString("HH:mm") - @h.EndAt.ToString("HH:mm")
+                            </span>
+
+                            <span class="grafik-status @(h.Status == "Zaplanowane" ? "is-ok" : "is-other")">
+                                @h.Status
+                            </span>
+                        </div>
+
+                        <h3 class="grafik-title mb-2">
+                            @h.RodzajZajecNazwa
+                        </h3>
+
+                        <p class="grafik-desc text-muted mb-4">
+                            @h.RodzajZajecOpis
+                        </p>
+
+                        <div class="grafik-meta">
+                            <div class="grafik-meta-item">
+                                <span class="grafik-label">Klub</span>
+                                @(string.IsNullOrWhiteSpace(h.KlubNazwa) ? "—" : h.KlubNazwa)
+                            </div>
+
+                            <div class="grafik-meta-item">
+                                <span class="grafik-label">Trener</span>
+                                <strong>
+                                    @(string.IsNullOrWhiteSpace($"{h.TrenerImie} {h.TrenerNazwisko}".Trim())
+                                        ? "—"
+                                        : $"{h.TrenerImie} {h.TrenerNazwisko}".Trim())
+                                </strong>
+                            </div>
+
+                            <div class="grafik-meta-item">
+                                <span class="grafik-label">Wolne miejsca</span>
+                                <strong>
+                                    @h.LiczbaWolnychMiejsc / @h.LimitMiejsc
+                                </strong>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <form asp-controller="Home"
+                                      asp-action="DolaczDoZajec"
+                                      method="post">
+
+                                    @Html.AntiForgeryToken()
+
+                                    <input type="hidden"
+                                           name="harmonogramId"
+                                           value="@h.HarmonogramId" />
+
+                                    <button type="submit"
+                                            class="btn btn-primary w-100">
+                                        Dołącz do zajęć
+                                    </button>
+
+                                </form>
+                            }
+                            else
+                            {
+                                <a asp-controller="Konto"
+                                   asp-action="Logowanie"
+                                   class="btn btn-primary w-100">
+                                    Zaloguj się aby dołączyć
+                                </a>
+                            }
+
+                        </div>
+
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body text-center py-5">
+                <h4 class="fw-bold mb-2">Brak zajęć</h4>
+                <p class="text-muted mb-0">
+                    Nie znaleziono zajęć dla wybranego dnia i klubu.
+                </p>
+            </div>
+        </div>
+    }
+
+</section>

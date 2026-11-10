@@ -1,0 +1,114 @@
+﻿@using ActiveClub.Shared.DTOs.UstawieniaKontaktowe
+@model ActiveClub.Shared.DTOs.Kontakt.KontaktFormDto
+
+@{
+    ViewData["Title"] = "Kontakt";
+    var kontakt = ViewBag.UstawieniaKontaktowe as UstawieniaKontaktoweDto;
+}
+
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Kontakt</h1>
+        <p class="text-muted">
+            Masz pytania? Skontaktuj się z nami lub odwiedź jeden z naszych klubów
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-7">
+            <div class="card shadow-sm border-0 rounded-4 h-100">
+                <div class="card-body p-4 p-lg-5">
+
+                    <h3 class="fw-bold mb-4">Napisz do nas</h3>
+
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["Success"]
+                        </div>
+                    }
+
+                    <form asp-controller="Home"
+                          asp-action="Kontakt"
+                          method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Imię</label>
+                                <input asp-for="ImieNazwisko"
+                                       class="form-control form-control-lg"
+                                       placeholder="Twoje imię" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input asp-for="Email"
+                                       class="form-control form-control-lg"
+                                       placeholder="twoj@email.com" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Temat</label>
+                                <input asp-for="Temat"
+                                       class="form-control form-control-lg"
+                                       placeholder="Temat wiadomości" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Wiadomość</label>
+                                <textarea asp-for="Wiadomosc"
+                                          class="form-control"
+                                          rows="6"
+                                          placeholder="Napisz swoją wiadomość..."></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    Wyślij wiadomość
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-3">Dane kontaktowe</h4>
+
+                    <p class="mb-2">
+                        <strong>Email:</strong><br />
+                        @(kontakt?.Email ?? "kontakt@activeclub.pl")
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Telefon:</strong><br />
+                        @(kontakt?.Telefon ?? "+48 123 456 789")
+                    </p>
+
+                    <p class="mb-0">
+                        <strong>Adres:</strong><br />
+                        @(kontakt?.Adres ?? "ul. Sportowa 10, 00-001 Warszawa")
+                    </p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body p-4">
+                    <h4 class="fw-bold mb-3">Godziny kontaktu</h4>
+                    <p class="mb-2">
+                        @(kontakt?.GodzinyKontaktu ?? "Poniedziałek – Piątek: 8:00 – 18:00")
+                    </p>
+                </div>
+            </div>
+        </div>
+
+</section>

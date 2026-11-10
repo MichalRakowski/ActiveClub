@@ -1,0 +1,26 @@
+﻿@* @model IEnumerable<ActiveClubData.Models.Aktualnosci>
+
+@if (Model != null && Model.Any())
+{
+    <section class="container my-5">
+        <h2 class="text-center fw-bold mb-4">Aktualności</h2>
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">@item.Tytul</h5>
+                            <p class="card-text">@item.Tresc</p>
+                           
+                        </div>
+                        <div class="card-footer bg-transparent border-0">
+                            
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+ *@

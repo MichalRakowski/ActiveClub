@@ -1,0 +1,80 @@
+﻿@using ActiveClub.Shared.DTOs.Trenerzy
+@model IEnumerable<TrenerDto>
+
+@{
+    ViewData["Title"] = "Trenerzy";
+}
+
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Nasi trenerzy</h1>
+        <p class="text-muted">
+            Poznaj zespół trenerów i wybierz osobę dopasowaną do Twoich celów.
+        </p>
+    </div>
+
+    @if (Model == null || !Model.Any(x => x.CzyAktywny))
+    {
+        <div class="alert alert-info text-center rounded-4">
+            Aktualnie nie ma dostępnych trenerów.
+        </div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var t in Model.Where(x => x.CzyAktywny))
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="mb-3">
+                                <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
+                                    Trener personalny
+                                </span>
+                            </div>
+
+                            <h4 class="fw-bold mb-2">
+                                @t.ImieNazwisko
+                            </h4>
+
+                            @if (!string.IsNullOrWhiteSpace(t.SpecjalizacjaOpis))
+                            {
+                                <p class="mb-2">
+                                    <strong>Specjalizacja:</strong> @t.SpecjalizacjaOpis
+                                </p>
+                            }
+
+                            @if (!string.IsNullOrWhiteSpace(t.KlubyNazwy))
+                            {
+                                <p class="mb-2">
+                                    <strong>Kluby:</strong> @t.KlubyNazwy
+                                </p>
+                            }
+
+                            <p class="mb-2">
+                                <strong>Stawka:</strong>
+                                @(t.StawkaZaGodzine?.ToString("0.00") ?? "—") zł/h
+                            </p>
+
+                            <p class="text-muted flex-grow-1 mb-4">
+                                @(string.IsNullOrWhiteSpace(t.Bio)
+                                    ? "Opis trenera wkrótce."
+                                    : t.Bio)
+                            </p>
+
+                            <a asp-controller="Uzytkownik"
+                               asp-action="UmowTrening"
+                               class="btn btn-primary mt-auto">
+                                Umów trening
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+</section>

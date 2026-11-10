@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "O nas";
+}
+
+<!-- HERO -->
+<section class="bg-light py-5">
+    <div class="container text-center">
+        <h1 class="fw-bold display-5 mb-3">O ActiveClub</h1>
+        <p class="lead text-muted">
+            Trenuj bez limitów. 24/7. W nowoczesnej przestrzeni stworzonej z myślą o Tobie.
+        </p>
+    </div>
+</section>
+
+<!-- GŁÓWNA SEKCJA -->
+<section class="container my-5">
+    <div class="row align-items-center g-5">
+
+        <!-- TEKST -->
+        <div class="col-lg-6">
+            <h2 class="fw-bold mb-4">Kim jesteśmy?</h2>
+
+            <p class="lead">
+                ActiveClub to nowoczesna sieć klubów fitness dostępnych 24 godziny na dobę,
+                7 dni w tygodniu. Tworzymy przestrzeń, w której każdy może trenować
+                w komfortowych warunkach i przyjaznej atmosferze.
+            </p>
+
+            <p>
+                Oferujemy profesjonalny sprzęt, zajęcia grupowe oraz treningi personalne
+                prowadzone przez doświadczonych trenerów. Nasze kluby są zaprojektowane
+                tak, aby zapewnić maksymalną wygodę i efektywność treningu.
+            </p>
+
+            <p>
+                Naszą misją jest wspieranie ludzi w budowaniu zdrowego stylu życia
+                oraz pomaganie im w osiąganiu sportowych i sylwetkowych celów.
+            </p>
+
+            <a class="btn btn-outline-primary"
+               asp-controller="Karnety"
+               asp-action="KupKarnet">
+                Kup karnet
+            </a>
+        </div>
+
+        <!-- OBRAZ -->
+        <div class="col-lg-6">
+            <img src="~/content/club1.jpg"
+                 class="img-fluid rounded-4 shadow-lg"
+                 alt="ActiveClub - nowoczesna siłownia"
+                 asp-append-version="true" />
+        </div>
+
+    </div>
+</section>
+
+<!-- NASZE WARTOŚCI -->
+<section class="bg-white py-5 border-top">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Dlaczego ActiveClub?</h2>
+            <p class="text-muted">Stawiamy na jakość, dostępność i komfort treningu</p>
+        </div>
+
+        <div class="row g-4 text-center">
+
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm rounded-4 h-100">
+                    <i class="bi bi-clock fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Dostęp 24/7</h5>
+                    <p class="text-muted mb-0">
+                        Trenuj wtedy, kiedy masz czas i motywację.
+                        Bez ograniczeń godzinowych.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm rounded-4 h-100">
+                    <i class="bi bi-lightning-charge fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Nowoczesny sprzęt</h5>
+                    <p class="text-muted mb-0">
+                        Profesjonalne strefy treningowe
+                        i najwyższej jakości wyposażenie.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 shadow-sm rounded-4 h-100">
+                    <i class="bi bi-people fs-1 text-primary mb-3"></i>
+                    <h5 class="fw-bold">Społeczność</h5>
+                    <p class="text-muted mb-0">
+                        Przyjazna atmosfera i wsparcie trenerów,
+                        którzy pomogą Ci osiągnąć cel.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,124 @@
+﻿@model ActiveClub.Shared.DTOs.Uzytkownicy.UpdateUzytkownikDto
+
+@{
+    ViewData["Title"] = "Edycja danych";
+}
+
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow-sm border-0 rounded-4">
+
+                <div class="card-body p-4">
+
+                    <h1 class="fw-bold mb-4">
+                        Edycja danych
+                    </h1>
+
+                    @if (TempData["Sukces"] != null)
+                    {
+                        <div class="alert alert-success">
+                            @TempData["Sukces"]
+                        </div>
+                    }
+
+                    <form method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger">
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="Imie" class="form-label">
+                                Imię
+                            </label>
+
+                            <input asp-for="Imie"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Imie"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="Nazwisko" class="form-label">
+                                Nazwisko
+                            </label>
+
+                            <input asp-for="Nazwisko"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Nazwisko"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label asp-for="Email" class="form-label">
+                                Email
+                            </label>
+
+                            <input asp-for="Email"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Email"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label asp-for="Telefon" class="form-label">
+                                Telefon
+                            </label>
+
+                            <input asp-for="Telefon"
+                                   class="form-control" />
+
+                            <span asp-validation-for="Telefon"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Zapisz zmiany
+                            </button>
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                Anuluj
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

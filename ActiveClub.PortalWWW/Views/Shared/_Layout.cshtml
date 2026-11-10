@@ -1,0 +1,283 @@
+﻿@using ActiveClub.Shared.DTOs.UstawieniaKontaktowe
+@using Microsoft.Extensions.Localization
+
+@inject ActiveClub.PortalWWW.Services.Api.UstawieniaKontaktoweApiClient UstawieniaKontaktoweApiClient
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ActiveClub.PortalWWW</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ActiveClub.PortalWWW.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+</head>
+
+<body>
+    @{
+        var isHome = (ViewContext.RouteData.Values["controller"]?.ToString() == "Home")
+        && (ViewContext.RouteData.Values["action"]?.ToString() == "Index");
+    }
+    @{
+        var kontakt = await UstawieniaKontaktoweApiClient.GetAsync();
+    }
+    <!-- sprawdzanie czy aktualnie wyswietla strone-->
+
+    <header>
+        <nav class="navbar navbar-light bg-white fixed-top shadow-sm" aria-label="Główna nawigacja">
+            <div class="container-fluid position-relative">
+
+                <!-- MENU (LEWA STRONA) -->
+                <button class="btn btn-link fs-3 text-dark"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#sideMenu"
+                        aria-controls="sideMenu"
+                        aria-label="Otwórz menu">
+                    ☰
+                </button>
+
+                <!-- LOGO (ŚRODEK) -->
+                <a class="navbar-brand logo-center"
+                   asp-controller="Home"
+                   asp-action="Index"
+                   aria-label="Przejdź na stronę główną">
+                    <img src="~/content/1.png" alt="ActiveClub" width="120" asp-append-version="true" />
+                </a>
+
+                <!-- PRAWA STRONA -->
+                <div class="ms-auto d-flex gap-2 align-items-center">
+                    <a class="btn btn-outline-primary"
+                       asp-controller="Karnety"
+                       asp-action="KupKarnet">
+                        Kup karnet
+                    </a>
+
+                    @if (User?.Identity?.IsAuthenticated == true)
+                    {
+                        <span class="fw-semibold d-none d-md-inline">Witaj, @User.Identity!.Name</span>
+                        <a asp-controller="Uzytkownik" asp-action="Index" class="btn btn-outline-primary">Moje konto</a>
+                        <a asp-controller="Konto" asp-action="Wyloguj" class="btn btn-primary">
+                            Wyloguj
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Konto" asp-action="Logowanie" class="btn btn-primary">Zaloguj się</a>
+                    }
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- MENU BOCZNE (OFFCANVAS) -->
+    <div class="offcanvas offcanvas-start side-menu"
+         tabindex="-1"
+         id="sideMenu"
+         aria-labelledby="sideMenuLabel">
+
+        <!-- GÓRA -->
+        <div class="side-menu-header d-flex justify-content-between align-items-center p-3">
+            <a class="btn btn-outline-primary"
+               asp-controller="Karnety"
+               asp-action="KupKarnet">
+                Kup karnet
+            </a>
+
+            <button type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Zamknij menu">
+            </button>
+        </div>
+
+        <span id="sideMenuLabel" class="visually-hidden">Menu boczne</span>
+
+        <!-- ŚRODEK -->
+        <div class="side-menu-body p-3">
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Kluby">
+               Kluby
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Onas">
+                O nas
+            </a>
+
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Zajecia">
+                Zajęcia grupowe
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="GrafikZajec">
+                Grafik zajęć grupowych
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="PlanyTreningowe">
+                Plany treningowe
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Trenerzy">
+                Trenerzy
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="JakZaczac">
+                Jak zacząć?
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Udogodnienia">
+                Udogodnienia
+            </a>
+            <a class="side-link"
+               asp-controller="Home"
+               asp-action="Kontakt">
+                Kontakt
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="container page-offset">
+        <main role="main" class="pb-3">
+            @RenderBody()  <!-- wstawianie widoku -->
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer-main mt-5" id="kontakt">
+        <div class="container py-5">
+            <div class="row gy-4">
+
+                <!-- LOGO + OPIS -->
+                <div class="col-md-4">
+                    <img src="~/content/1.png" width="140" class="mb-3" alt="ActiveClub logo" asp-append-version="true" />
+                    <p class="footer-text">
+                        ActiveClub to sieć nowoczesnych klubów fitness dostępnych 24/7.
+                        Trenuj bez limitów i zobowiązań.
+                    </p>
+                </div>
+
+                <!-- O NAS -->
+                <div class="col-md-2">
+                    <h6 class="footer-title">O nas</h6>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Home" asp-action="Index">Strona główna</a></li>
+                        
+                        <li>
+                            <a asp-controller="Karnety" asp-action="KupKarnet">
+                                Kup karnet
+                            </a>
+                        </li>
+
+                        
+                        <li>
+                            <a asp-controller="Home" asp-action="Kluby">
+                                Nasze kluby
+                            </a>
+                        </li>
+                        
+                        <li>
+                            
+                            
+                                <a asp-controller="Home" asp-action="Trenerzy">
+                                    Trenerzy
+                                </a>
+                           
+                        </li>
+
+                        <li><a asp-controller="Home" asp-action="Regulamin">Regulamin</a></li>
+                        <li>
+                            <a asp-controller="Home" asp-action="RODO">RODO</a>
+                        </li>
+                        <li><a asp-controller="Home" asp-action="Privacy">Polityka prywatności</a></li>
+                    </ul>
+                </div>
+
+                <!-- KONTAKT -->
+                <div class="col-md-3">
+                    <h6 class="footer-title">Kontakt</h6>
+
+                    <p class="footer-text mb-2">
+                        <i class="bi bi-telephone" aria-hidden="true"></i>
+                        @(kontakt?.Telefon ?? "+48 123 456 789")
+                    </p>
+
+                    <p class="footer-text mb-2">
+                        <i class="bi bi-envelope" aria-hidden="true"></i>
+                        @(kontakt?.Email ?? "kontakt@activeclub.pl")
+                    </p>
+
+                    <p class="footer-text">
+                        <i class="bi bi-clock" aria-hidden="true"></i>
+                        @(kontakt?.GodzinyKontaktu ?? "PN–PT 8:00–18:00")
+                    </p>
+                </div>
+
+                <!-- SOCIAL + PAKIETY -->
+                <div class="col-md-3">
+                    <h6 class="footer-title">Obserwuj nas</h6>
+                    <div class="footer-social-icons mb-3">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="bi bi-tiktok" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="bi bi-youtube" aria-hidden="true"></i></a>
+                    </div>
+
+                    <h6 class="footer-title">Obsługiwane pakiety</h6>
+                    <div class="footer-packages">
+
+                        <a asp-controller="Home" asp-action="Multisport" aria-label="Multisport">
+                            <img src="~/content/2.png.webp"
+                                 alt="Multisport"
+                                 class="package-icon"
+                                 asp-append-version="true" />
+                        </a>
+
+                        <a href="/Home/MedicoverSport" aria-label="Medicover Sport">
+                            <img src="~/content/4.webp" alt="Medicover Sport" class="package-icon" asp-append-version="true" />
+                        </a>
+
+                        <a asp-controller="Home" asp-action="PzuSport" aria-label="PZU Sport">
+                            <img src="~/content/3.png.webp" alt="PZU Sport" class="package-icon" asp-append-version="true" />
+                        </a>
+
+                        <a asp-controller="Home" asp-action="FitProfit" aria-label="FitProfit">
+                            <img src="~/content/5.webp" alt="FitProfit" class="package-icon" asp-append-version="true" />
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DOLNY PASEK -->
+        <div class="footer-bottom">
+            <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span>© 2026 ActiveClub</span>
+                <span>Wszelkie prawa zastrzeżone</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @* pozwala dodac wlasne skrypty *@
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@model ActiveClub.Shared.DTOs.Kontakt.KontaktFormDto
+
+<form asp-action="Index" method="post">
+
+    <div class="mb-3">
+        <label>Imię i nazwisko</label>
+        <input asp-for="ImieNazwisko" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Temat</label>
+        <input asp-for="Temat" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Wiadomość</label>
+        <textarea asp-for="Wiadomosc"
+                  class="form-control"
+                  rows="6"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Wyślij
+    </button>
+
+</form>

@@ -1,0 +1,145 @@
+﻿@model IReadOnlyList<ActiveClub.Shared.DTOs.Aktualnosci.AktualnoscDto>
+
+@{
+    ViewData["Title"] = "Aktualności";
+
+    string Preview(string? text, int maxLen = 220, int minLastSpace = 80)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return string.Empty;
+
+        text = text.Trim();
+        if (text.Length <= maxLen) return text;
+
+        var cut = text.Substring(0, maxLen);
+        var lastSpace = cut.LastIndexOf(' ');
+        if (lastSpace >= minLastSpace)
+            cut = cut.Substring(0, lastSpace);
+
+        return cut + "…";
+    }
+
+    string Safe(string? text) => text ?? string.Empty;
+
+    string FormatDate(DateTime? dataPublikacji, DateTime? dataDodania)
+    {
+        var data = dataPublikacji ?? dataDodania;
+        return data?.ToString("dd.MM.yyyy") ?? string.Empty;
+    }
+}
+
+<section class="container my-5">
+    <header class="d-flex flex-column align-items-center text-center mb-4">
+        <h2 class="fw-bold mb-1">Aktualności</h2>
+        <p class="text-muted mb-0">Najnowsze informacje i ogłoszenia z ActiveClub</p>
+    </header>
+
+    @if (Model is { Count: > 0 })
+    {
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                var id = item.AktualnoscId;
+                var modalId = $"news_{id}";
+                var modalTitleId = $"news_title_{id}";
+                var preview = Preview(item.Tresc, 220);
+                var displayDate = FormatDate(item.DataPublikacji, item.DataDodania);
+
+                <article class="col-lg-4 col-md-6">
+                    <div class="card news-card h-100 shadow-sm border-0">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="news-badge" aria-label="Typ wpisu: aktualność">
+                                    <i class="bi bi-megaphone" aria-hidden="true"></i>
+                                    <span>Aktualność</span>
+                                </div>
+
+                                @if (!string.IsNullOrEmpty(displayDate))
+                                {
+                                    <span class="text-muted small">
+                                        <i class="bi bi-calendar-event" aria-hidden="true"></i>
+                                        @displayDate
+                                    </span>
+                                }
+                            </div>
+
+                            <h3 class="h5 card-title news-title mb-2">@Safe(item.Tytul)</h3>
+
+                            <p class="card-text news-text flex-grow-1 mb-3">
+                                @preview
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-between mt-auto">
+                                <span class="text-muted small">
+                                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                                    <span>Więcej w środku</span>
+                                </span>
+
+                                <button type="button"
+                                        class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#@modalId"
+                                        aria-controls="@modalId"
+                                        aria-label="Czytaj więcej: @Safe(item.Tytul)">
+                                    Czytaj więcej
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="modal fade"
+                     id="@modalId"
+                     tabindex="-1"
+                     aria-hidden="true"
+                     aria-labelledby="@modalTitleId">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div>
+                                    <h4 class="modal-title fw-bold mb-1" id="@modalTitleId">
+                                        @Safe(item.Tytul)
+                                    </h4>
+
+                                    @if (!string.IsNullOrEmpty(displayDate))
+                                    {
+                                        <div class="text-muted small">
+                                            <i class="bi bi-calendar-event" aria-hidden="true"></i>
+                                            <span>Data publikacji: @displayDate</span>
+                                        </div>
+                                    }
+                                </div>
+
+                                <button type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Zamknij">
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <p class="mb-0" style="white-space: pre-line;">
+                                    @Safe(item.Tresc)
+                                </p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button"
+                                        class="btn btn-secondary"
+                                        data-bs-dismiss="modal">
+                                    Zamknij
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center text-muted py-5" role="status" aria-live="polite">
+            <i class="bi bi-newspaper fs-1 d-block mb-2" aria-hidden="true"></i>
+            <p class="mb-0">Brak aktualności do wyświetlenia.</p>
+        </div>
+    }
+</section>

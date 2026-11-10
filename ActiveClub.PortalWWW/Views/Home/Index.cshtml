@@ -1,0 +1,398 @@
+﻿@using ActiveClub.Shared.DTOs.Aktualnosci
+@using ActiveClub.Shared.DTOs.Trenerzy
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    var aktualnosci = ViewBag.ModelAktualnosci as List<AktualnoscDto> ?? new List<AktualnoscDto>();
+    var trenerzy =
+           ViewBag.Trenerzy as List<TrenerDto>
+           ?? new List<TrenerDto>();
+
+    string Preview(string? text, int maxLen = 220)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return "";
+        text = text.Trim();
+        if (text.Length <= maxLen) return text;
+
+        var cut = text.Substring(0, maxLen);
+        var lastSpace = cut.LastIndexOf(' ');
+        if (lastSpace > 80) cut = cut.Substring(0, lastSpace);
+
+        return cut + "…";
+    }
+   
+}
+
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" aria-label="Karuzela główna">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+            <img src="~/content/ActiveClub5.png" class="d-block w-100"
+                 alt="ActiveClub - slajd 1" asp-append-version="true" loading="eager">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/content/ActiveClub7.png" class="d-block w-100"
+                 alt="ActiveClub - slajd 2" asp-append-version="true" loading="lazy">
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+            <img src="~/content/ActiveClub8.png" class="d-block w-100"
+                 alt="ActiveClub - slajd 3" asp-append-version="true" loading="lazy">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button"
+            data-bs-target="#carouselExampleInterval" data-bs-slide="prev" aria-label="Poprzedni slajd">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button"
+            data-bs-target="#carouselExampleInterval" data-bs-slide="next" aria-label="Następny slajd">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+</div>
+
+
+
+<section class="pricing-section py-5" aria-label="Cennik">
+    <div class="container">
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-card h-100">
+                    <h5 class="pricing-title">Karnet 6 miesięcy</h5>
+                    <p class="pricing-subtitle">najbardziej opłacalny</p>
+
+                    <div class="pricing-price" aria-label="Cena od 119 zł 95 gr">
+                        <span class="from">od</span>
+                        <span class="value">119<sup>95</sup></span>
+                        <span>zł</span>
+                    </div>
+
+                    <span class="badge-entry">wpisowe 0 zł</span>
+
+                    <ul class="pricing-features">
+                        <li>Dostęp 24/7</li>
+                        <li>Woda gratis</li>
+                        <li>Zajęcia grupowe</li>
+                        <li>Plany treningowe</li>
+                        <li>Video tutoriale</li>
+                    </ul>
+
+                    <a class="btn btn-primary w-100 mt-3"
+                       asp-controller="Karnety"
+                       asp-action="KupKarnet">
+                        Wybierz
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-card featured h-100">
+                    <h5 class="pricing-title">Karnet 12 miesięcy</h5>
+                    <p class="pricing-subtitle">najczęściej wybierany</p>
+
+                    <div class="pricing-price" aria-label="Cena od 99 zł 95 gr">
+                        <span class="from">od</span>
+                        <span class="value">99<sup>95</sup></span>
+                        <span>zł</span>
+                    </div>
+
+                    <span class="badge-entry">wpisowe 0 zł</span>
+
+                    <ul class="pricing-features">
+                        <li>12 miesięcy w cenie 10</li>
+                        <li>Dostęp 24/7</li>
+                        <li>Woda gratis</li>
+                        <li>Zajęcia grupowe</li>
+                        <li>Diety i video</li>
+                    </ul>
+
+                    <a class="btn btn-outline-light w-100 mt-3"
+                       asp-controller="Karnety"
+                       asp-action="KupKarnet">
+                        Najlepsza oferta
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="pricing-card h-100">
+                    <h5 class="pricing-title">Karnet elastyczny</h5>
+                    <p class="pricing-subtitle">bez zobowiązań</p>
+
+                    <div class="pricing-price" aria-label="Cena od 159 zł 95 gr">
+                        <span class="from">od</span>
+                        <span class="value">159<sup>95</sup></span>
+                        <span>zł</span>
+                    </div>
+
+                    <span class="badge-entry">wpisowe 0 zł</span>
+
+                    <ul class="pricing-features">
+                        <li>Dostęp 24/7</li>
+                        <li>Woda gratis</li>
+                        <li>Zajęcia grupowe</li>
+                        <li>Video tutoriale</li>
+                        <li>Miesięczne wypowiedzenie</li>
+                    </ul>
+
+                    <a class="btn btn-primary w-100 mt-3"
+                       asp-controller="Karnety"
+                       asp-action="KupKarnet">
+                        Wybierz
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- CLUBS HEADER -->
+<section class="text-center my-5" aria-label="Poznaj nasze kluby">
+    <h2 class="fw-bold text-uppercase mb-2">Poznaj nasze kluby!</h2>
+    <p class="text-muted mt-2 mb-0">
+        Nowoczesne przestrzenie, profesjonalny sprzęt i świetna atmosfera
+    </p>
+</section>
+
+
+<!-- CLUBS CAROUSEL -->
+<div id="carouselKlub" class="carousel slide" data-bs-ride="carousel" aria-label="Karuzela klubów">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselKlub" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slajd 1"></button>
+        <button type="button" data-bs-target="#carouselKlub" data-bs-slide-to="1" aria-label="Slajd 2"></button>
+        <button type="button" data-bs-target="#carouselKlub" data-bs-slide-to="2" aria-label="Slajd 3"></button>
+        <button type="button" data-bs-target="#carouselKlub" data-bs-slide-to="3" aria-label="Slajd 4"></button>
+        <button type="button" data-bs-target="#carouselKlub" data-bs-slide-to="4" aria-label="Slajd 5"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/content/club1.jpg" class="d-block w-100" alt="Nowoczesna siłownia"
+                 asp-append-version="true" loading="lazy">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Nowoczesna siłownia</h5>
+                <p>Niesamowita atmosfera i światła</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/content/club2.jpg" class="d-block w-100" alt="Treningi grupowe"
+                 asp-append-version="true" loading="lazy">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Treningi grupowe</h5>
+                <p>Motywacja w grupie</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/content/club3.jpg" class="d-block w-100" alt="Strefa cardio"
+                 asp-append-version="true" loading="lazy">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Strefa cardio</h5>
+                <p>Energia, która napędza</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/content/club4.webp" class="d-block w-100" alt="Przekraczaj swoje granice"
+                 asp-append-version="true" loading="lazy">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Przekraczaj swoje granice</h5>
+                <p>Każdy trening to krok bliżej lepszej formy.</p>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/content/club5.webp" class="d-block w-100" alt="Siła, wytrzymałość i energia"
+                 asp-append-version="true" loading="lazy">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Siła, wytrzymałość, energia</h5>
+                <p>Kompleksowy trening całego ciała.</p>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselKlub" data-bs-slide="prev" aria-label="Poprzedni slajd">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselKlub" data-bs-slide="next" aria-label="Następny slajd">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+</div>
+
+
+<!-- TRAINERS -->
+<section class="trainer-section my-5" aria-label="Trenerzy personalni">
+    <div class="container">
+
+        <h2 class="text-center">
+            Wybierz trenera personalnego
+        </h2>
+
+        <p class="subtitle text-center text-muted">
+            Treningi indywidualne dopasowane do Twoich celów
+        </p>
+
+        @if (!trenerzy.Any(x => x.CzyAktywny))
+        {
+            <div class="alert alert-info text-center mt-4">
+                Aktualnie brak dostępnych trenerów.
+            </div>
+        }
+        else
+        {
+            <div class="trainer-scroll mt-3">
+
+                @foreach (var trener in trenerzy.Where(x => x.CzyAktywny))
+                {
+                    <div class="trainer-scroll-item">
+
+                        <div class="card h-100 shadow-sm border-0 rounded-4">
+
+                            <div class="card-body d-flex flex-column">
+
+                                <div class="mb-3">
+                                    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
+                                        Trener personalny
+                                    </span>
+                                </div>
+
+                                <h4 class="fw-bold mb-2">
+                                    @trener.Imie @trener.Nazwisko
+                                </h4>
+
+                                @if (!string.IsNullOrWhiteSpace(trener.SpecjalizacjaOpis))
+                                {
+                                    <p class="mb-2">
+                                        <strong>Specjalizacja:</strong>
+                                        @trener.SpecjalizacjaOpis
+                                    </p>
+                                }
+
+                                <p class="text-muted flex-grow-1">
+                                    @(string.IsNullOrWhiteSpace(trener.Bio)
+                                        ? "Trener ActiveClub."
+                                        : trener.Bio)
+                                </p>
+
+                                <div class="mb-3">
+                                    <strong>Stawka:</strong>
+                                    @(trener.StawkaZaGodzine?.ToString("0.00") ?? "—")
+                                    zł / godz.
+                                </div>
+
+                                <a asp-controller="Uzytkownik"
+                                   asp-action="UmowTrening"
+                                   class="btn btn-primary mt-auto">
+                                    Wybierz trenera
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+
+    </div>
+</section>
+
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-horizontal my-5" aria-label="Opinie klientów">
+    <div class="container">
+        <div class="testimonial-track" role="list">
+            <div class="testimonial" role="listitem">
+                <p>"Super treningi! Polecam każdemu!" – Anna K.</p>
+                <div class="testimonial-rating" aria-label="Ocena 5 na 5">⭐️⭐️⭐️⭐️⭐️</div>
+            </div>
+            <div class="testimonial" role="listitem">
+                <p>"Profesjonalni trenerzy i świetna atmosfera." – Michał W.</p>
+                <div class="testimonial-rating" aria-label="Ocena 4 na 5">⭐️⭐️⭐️⭐️</div>
+            </div>
+            <div class="testimonial" role="listitem">
+                <p>"Najlepszy klub w mieście!" – Karolina P.</p>
+                <div class="testimonial-rating" aria-label="Ocena 5 na 5">⭐️⭐️⭐️⭐️⭐️</div>
+            </div>
+            <div class="testimonial" role="listitem">
+                <p>"Ćwiczenia dopasowane do moich potrzeb." – Tomek R.</p>
+                <div class="testimonial-rating" aria-label="Ocena 4 na 5">⭐️⭐️⭐️⭐️</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- AKTUALNOŚCI  -->
+@if (aktualnosci.Any())
+{
+    <section class="container my-5" aria-label="Aktualności">
+        <div class="d-flex flex-column align-items-center text-center mb-4">
+            <h2 class="fw-bold mb-1">Aktualności</h2>
+            <p class="text-muted mb-0">Najnowsze informacje i ogłoszenia</p>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var item in aktualnosci)
+            {
+                var modalId = $"news_{item.AktualnoscId}";
+
+                <div class="col-lg-4 col-md-6">
+                    <article class="card news-card h-100 shadow-sm border-0">
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="news-badge mb-3">
+                                <i class="bi bi-megaphone"></i>
+                                <span>Aktualność</span>
+                            </div>
+
+                            <h5 class="news-title">@item.Tytul</h5>
+
+                            <p class="news-text flex-grow-1 mb-0">
+                                @Preview(item.Tresc, 220)
+                            </p>
+
+                            <div class="d-flex align-items-center justify-content-between mt-3">
+                                <span class="text-muted small">
+                                    <i class="bi bi-info-circle"></i> Szczegóły
+                                </span>
+
+                                <button type="button"
+                                        class="btn btn-sm btn-outline-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#@modalId">
+                                    Czytaj więcej
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+
+                <!-- MODAL: pełna treść -->
+                <div class="modal fade" id="@modalId" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title fw-bold">@item.Tytul</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="mb-0" style="white-space: pre-line; line-height: 1.7;">@item.Tresc</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}

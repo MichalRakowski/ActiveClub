@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "FitProfit";
+}
+
+<section class="hero-fitprofit text-white d-flex align-items-center">
+    <div class="container text-center">
+
+        <img src="~/content/5.webp"
+             alt="FitProfit"
+             class="fitprofit-logo mb-4" />
+
+        <h1 class="display-4 fw-bold mb-3">
+            Trenuj z kartą FitProfit
+        </h1>
+
+        <p class="lead mb-4">
+            Korzystaj z ActiveClub wygodnie, szybko i bez dodatkowych opłat.
+        </p>
+
+        <a asp-controller="Home"
+           asp-action="Kluby"
+           class="btn btn-primary btn-lg px-5">
+            Znajdź klub
+        </a>
+
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="fitprofit-card h-100">
+                    <i class="bi bi-person-check fs-1 text-primary"></i>
+                    <h4 class="mt-3">Jednorazowa rejestracja</h4>
+                    <p>Zarejestruj się w klubie lub online i korzystaj z wejść z kartą FitProfit.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="fitprofit-card h-100">
+                    <i class="bi bi-qr-code-scan fs-1 text-primary"></i>
+                    <h4 class="mt-3">Szybkie wejście</h4>
+                    <p>Potwierdź swoją kartę i wejdź na trening bez zbędnego czekania.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="fitprofit-card h-100">
+                    <i class="bi bi-heart-pulse fs-1 text-primary"></i>
+                    <h4 class="mt-3">Trening bez limitu</h4>
+                    <p>Korzystaj ze stref cardio, siłowych, funkcjonalnych i zajęć grupowych.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="~/content/fitprofit-gym.jpg"
+                     class="img-fluid rounded-4 shadow"
+                     alt="FitProfit ActiveClub">
+            </div>
+
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Jak skorzystać?</h2>
+
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Przyjdź do wybranego klubu ActiveClub.
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Pokaż aktywną kartę FitProfit i dokument tożsamości.
+                    </li>
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Potwierdź wejście i rozpocznij trening.
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>

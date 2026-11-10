@@ -1,0 +1,97 @@
+﻿@using ActiveClub.Shared.DTOs.Udogodnienia
+@model IEnumerable<UdogodnienieDto>
+
+@{
+    ViewData["Title"] = "Udogodnienia";
+}
+
+@functions {
+    public string GetAmenityIcon(string nazwa)
+    {
+        if (string.IsNullOrWhiteSpace(nazwa))
+            return "bi-star";
+
+        nazwa = nazwa.ToLower();
+
+        if (nazwa.Contains("sauna"))
+            return "bi-thermometer-sun";
+
+        if (nazwa.Contains("parking"))
+            return "bi-p-circle";
+
+        if (nazwa.Contains("wifi") || nazwa.Contains("wi-fi") || nazwa.Contains("internet"))
+            return "bi-wifi";
+
+        if (nazwa.Contains("szatnia"))
+            return "bi-door-open";
+
+        if (nazwa.Contains("prysznic"))
+            return "bi-droplet";
+
+        if (nazwa.Contains("trener"))
+            return "bi-person-badge";
+
+        if (nazwa.Contains("siłownia") || nazwa.Contains("sprzęt"))
+            return "bi-barbell";
+
+        if (nazwa.Contains("zajęcia"))
+            return "bi-people";
+
+        if (nazwa.Contains("basen"))
+            return "bi-water";
+
+        if (nazwa.Contains("kawiarnia") || nazwa.Contains("bar"))
+            return "bi-cup-hot";
+
+        if (nazwa.Contains("klimatyzacja"))
+            return "bi-snow";
+
+        if (nazwa.Contains("relaks"))
+            return "bi-heart";
+
+        return "bi-check-circle";
+    }
+}
+
+<section class=" amenities-section">
+    <div class="text-center mb-5 amenities-header">
+        <h1>Udogodnienia w naszych klubach</h1>
+        <p>
+            Sprawdź, z jakich udogodnień możesz korzystać w ActiveClub
+        </p>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var u in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="amenity-card">
+                        <div class="amenity-card-body">
+                            <div class="amenity-icon-wrapper">
+                                <i class="bi @GetAmenityIcon(u.Nazwa)"></i>
+                            </div>
+
+                            <h4 class="amenity-title">
+                                @u.Nazwa
+                            </h4>
+
+                            <p class="amenity-description">
+                                @(string.IsNullOrWhiteSpace(u.Opis) ? "Brak opisu dla tego udogodnienia." : u.Opis)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="bi bi-info-circle"></i>
+            <h4 class="fw-bold mb-2">Brak udogodnień do wyświetlenia</h4>
+            <p class="mb-0">W tej chwili nie dodano jeszcze żadnych udogodnień.</p>
+        </div>
+    }
+</section>

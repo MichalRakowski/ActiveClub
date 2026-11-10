@@ -1,0 +1,49 @@
+﻿<Window x:Class="ActiveClub.Firma.Views.WybierzKlubWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wybierz klub"
+        Height="420"
+        Width="650"
+        WindowStartupLocation="CenterOwner"
+        Background="#2D3E50">
+
+    <DockPanel Margin="12">
+
+        <TextBox DockPanel.Dock="Top"
+                 Margin="0,0,0,10"
+                 Padding="8,6"
+                 Background="#223040"
+                 Foreground="White"
+                 BorderBrush="#455A64"
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0">
+
+            <Button Content="Anuluj"
+                    Width="100"
+                    Margin="0,0,8,0"
+                    IsCancel="True" />
+
+            <Button Content="Wybierz"
+                    Width="100"
+                    IsDefault="True"
+                    Command="{Binding SelectCommand}" />
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding FilteredItems}"
+                  SelectedItem="{Binding SelectedItem}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding KlubId}" Width="80" />
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Nazwa}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Window>

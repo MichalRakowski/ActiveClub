@@ -1,0 +1,233 @@
+﻿@{
+    ViewData["Title"] = "Plany treningowe";
+}
+
+<section class="training-hero">
+    <div class="training-hero-overlay">
+        <div class="container">
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-7">
+                    <span class="training-badge">ActiveClub Training</span>
+                    <h1>Plany treningowe dla każdego</h1>
+                    <p>
+                        Zaczynasz przygodę z siłownią albo chcesz trenować skuteczniej?
+                        Skorzystaj z gotowych planów treningowych przygotowanych z myślą
+                        o różnych celach i poziomach zaawansowania.
+                    </p>
+                    <a href="#plany" class="btn btn-primary btn-lg mt-3">
+                        Zobacz plany
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2>Od czego zacząć?</h2>
+        <p class="training-lead">
+            Wybierz plan dopasowany do swojego celu. Każdy plan zawiera propozycję
+            ćwiczeń, liczbę serii, powtórzeń oraz krótkie wskazówki treningowe.
+        </p>
+    </div>
+
+    <div class="row g-4" id="plany">
+
+        <div class="col-md-6 col-lg-4">
+            <div class="training-card">
+                <div class="training-card-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+                <h4>Start na siłowni</h4>
+                <p>
+                    Plan dla osób początkujących. Bezpieczne wprowadzenie do treningu
+                    na maszynach, cardio i ćwiczeń ogólnorozwojowych.
+                </p>
+                <ul>
+                    <li>Poziom: początkujący</li>
+                    <li>Czas: około 45 minut</li>
+                    <li>Cel: technika i pewność ruchu</li>
+                </ul>
+                <a href="#plan-start" class="btn btn-outline-primary w-100">Sprawdź</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="training-card">
+                <div class="training-card-icon">
+                    <i class="bi bi-fire"></i>
+                </div>
+                <h4>Spalanie kalorii</h4>
+                <p>
+                    Dynamiczny plan nastawiony na poprawę kondycji, redukcję tkanki
+                    tłuszczowej i zwiększenie wydolności.
+                </p>
+                <ul>
+                    <li>Poziom: początkujący / średni</li>
+                    <li>Czas: 40–50 minut</li>
+                    <li>Cel: redukcja i kondycja</li>
+                </ul>
+                <a href="#plan-spalanie" class="btn btn-outline-primary w-100">Sprawdź</a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="training-card">
+                <div class="training-card-icon">
+                    <i class="bi bi-trophy"></i>
+                </div>
+                <h4>Budowa siły</h4>
+                <p>
+                    Plan dla osób, które chcą wzmocnić całe ciało, poprawić sylwetkę
+                    i stopniowo zwiększać obciążenia.
+                </p>
+                <ul>
+                    <li>Poziom: średnio zaawansowany</li>
+                    <li>Czas: 50–60 minut</li>
+                    <li>Cel: siła i masa mięśniowa</li>
+                </ul>
+                <a href="#plan-sila" class="btn btn-outline-primary w-100">Sprawdź</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="training-details py-5">
+    <div class="container">
+
+        <div class="training-plan-box" id="plan-start">
+            <h3>Plan: Start na siłowni</h3>
+            <p>Trening wykonuj 2–3 razy w tygodniu. Zacznij od małych obciążeń.</p>
+
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ćwiczenie</th>
+                            <th>Serie</th>
+                            <th>Powtórzenia / czas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cardio — rowerek lub bieżnia</td>
+                            <td>1</td>
+                            <td>10 minut</td>
+                        </tr>
+                        <tr>
+                            <td>Wyciskanie na maszynie</td>
+                            <td>3</td>
+                            <td>10–12</td>
+                        </tr>
+                        <tr>
+                            <td>Przyciąganie drążka do klatki</td>
+                            <td>3</td>
+                            <td>10–12</td>
+                        </tr>
+                        <tr>
+                            <td>Prostowanie nóg na maszynie</td>
+                            <td>3</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Plank</td>
+                            <td>3</td>
+                            <td>30 sekund</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="training-plan-box" id="plan-spalanie">
+            <h3>Plan: Spalanie kalorii</h3>
+            <p>Połącz ćwiczenia cardio z prostym treningiem obwodowym.</p>
+
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ćwiczenie</th>
+                            <th>Serie</th>
+                            <th>Powtórzenia / czas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cardio</td>
+                            <td>1</td>
+                            <td>10 minut</td>
+                        </tr>
+                        <tr>
+                            <td>Przysiady z hantlem</td>
+                            <td>3</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Wiosłowanie na maszynie</td>
+                            <td>3</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Mountain climbers</td>
+                            <td>3</td>
+                            <td>30 sekund</td>
+                        </tr>
+                        <tr>
+                            <td>Orbitrek lub bieżnia</td>
+                            <td>1</td>
+                            <td>10–15 minut</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="training-plan-box" id="plan-sila">
+            <h3>Plan: Budowa siły</h3>
+            <p>Trening wykonuj 3 razy w tygodniu, zostawiając dzień przerwy między sesjami.</p>
+
+            <div class="table-responsive">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th>Ćwiczenie</th>
+                            <th>Serie</th>
+                            <th>Powtórzenia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Przysiad z hantlem lub sztangą</td>
+                            <td>4</td>
+                            <td>8–10</td>
+                        </tr>
+                        <tr>
+                            <td>Wyciskanie na klatkę</td>
+                            <td>4</td>
+                            <td>8–10</td>
+                        </tr>
+                        <tr>
+                            <td>Wiosłowanie</td>
+                            <td>4</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Martwy ciąg rumuński</td>
+                            <td>3</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>Brzuch — spięcia lub plank</td>
+                            <td>3</td>
+                            <td>12–15 / 45 sek.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>

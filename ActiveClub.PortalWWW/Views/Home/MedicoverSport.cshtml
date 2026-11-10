@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Medicover Sport";
+}
+
+<section class="hero-medicover text-white d-flex align-items-center">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold mb-3">
+            Trenuj z kartą Medicover Sport
+        </h1>
+
+        <p class="lead mb-4">
+            Korzystaj z naszych klubów bez dodatkowych opłat
+            i ćwicz kiedy chcesz.
+        </p>
+
+        <a asp-controller="Karnety"
+           asp-action="KupKarnet"
+           class="btn btn-primary btn-lg px-5">
+            Sprawdź kluby
+        </a>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="benefit-card h-100">
+                    <i class="bi bi-clock fs-1 text-primary"></i>
+                    <h4 class="mt-3">Dostęp 24/7</h4>
+                    <p>
+                        Trenuj o dowolnej porze dnia i nocy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="benefit-card h-100">
+                    <i class="bi bi-heart-pulse fs-1 text-primary"></i>
+                    <h4 class="mt-3">Nowoczesny sprzęt</h4>
+                    <p>
+                        Strefy cardio, wolne ciężary i maszyny premium.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="benefit-card h-100">
+                    <i class="bi bi-people fs-1 text-primary"></i>
+                    <h4 class="mt-3">Zajęcia grupowe</h4>
+                    <p>
+                        Fitness, stretching, rowery i wiele więcej.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="medicover-info py-5 bg-light">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="~/content/medicover-gym.jpg"
+                     class="img-fluid rounded-4 shadow"
+                     alt="Medicover Sport">
+            </div>
+
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">
+                    Jak skorzystać?
+                </h2>
+
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Przyjdź do dowolnego klubu
+                    </li>
+
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Pokaż aktywną kartę Medicover Sport
+                    </li>
+
+                    <li class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                        Rozpocznij trening bez dodatkowych formalności
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

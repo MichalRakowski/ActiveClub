@@ -1,0 +1,2308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ActiveClubModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Aktualnosci">
+          <Key>
+            <PropertyRef Name="AktualnoscId" />
+          </Key>
+          <Property Name="AktualnoscId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tytul" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Tresc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataDodania" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CzlonkostwaUzytkownika">
+          <Key>
+            <PropertyRef Name="CzlonkostwoId" />
+          </Key>
+          <Property Name="CzlonkostwoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="RodzajCzlonkostwaId" Type="int" Nullable="false" />
+          <Property Name="KlubId" Type="int" />
+          <Property Name="StartAt" Type="date" Nullable="false" />
+          <Property Name="EndAt" Type="date" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DostepnoscTrenera">
+          <Key>
+            <PropertyRef Name="DostepnoscId" />
+          </Key>
+          <Property Name="DostepnoscId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrenerId" Type="int" Nullable="false" />
+          <Property Name="KlubId" Type="int" />
+          <Property Name="StartAt" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="EndAt" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GodzinyOtwarcia">
+          <Key>
+            <PropertyRef Name="GodzinyOtwarciaId" />
+          </Key>
+          <Property Name="GodzinyOtwarciaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="DzienTygodnia" Type="tinyint" Nullable="false" />
+          <Property Name="GodzinaOd" Type="time" Precision="0" />
+          <Property Name="GodzinaDo" Type="time" Precision="0" />
+          <Property Name="CzyZamkniete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HarmonogramZajec">
+          <Key>
+            <PropertyRef Name="HarmonogramId" />
+          </Key>
+          <Property Name="HarmonogramId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="RodzajZajecId" Type="int" Nullable="false" />
+          <Property Name="SalaId" Type="int" />
+          <Property Name="TrenerId" Type="int" />
+          <Property Name="StartAt" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="EndAt" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="LimitMiejsc" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KlubUdogodnienie">
+          <Key>
+            <PropertyRef Name="KlubId" />
+            <PropertyRef Name="UdogodnienieId" />
+          </Key>
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="UdogodnienieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kluby">
+          <Key>
+            <PropertyRef Name="KlubId" />
+          </Key>
+          <Property Name="KlubId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Miasto" Type="nvarchar" MaxLength="120" />
+          <Property Name="Ulica" Type="nvarchar" MaxLength="200" />
+          <Property Name="KodPocztowy" Type="nvarchar" MaxLength="20" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="30" />
+          <Property Name="EmailKontakt" Type="nvarchar" MaxLength="320" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogiLogowan">
+          <Key>
+            <PropertyRef Name="LogowanieId" />
+          </Key>
+          <Property Name="LogowanieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" />
+          <Property Name="EmailWpisany" Type="nvarchar" MaxLength="320" />
+          <Property Name="CzySukces" Type="bit" Nullable="false" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="64" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="400" />
+          <Property Name="DataZdarzenia" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MetodyPlatnosci">
+          <Key>
+            <PropertyRef Name="MetodaPlatnosciId" />
+          </Key>
+          <Property Name="MetodaPlatnosciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="CzyAktywna" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Opinie">
+          <Key>
+            <PropertyRef Name="OpiniaId" />
+          </Key>
+          <Property Name="OpiniaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="Ocena" Type="tinyint" Nullable="false" />
+          <Property Name="Komentarz" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DataDodania" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PozycjeZamowienia">
+          <Key>
+            <PropertyRef Name="PozycjaId" />
+          </Key>
+          <Property Name="PozycjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZamowienieId" Type="int" Nullable="false" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="RefId" Type="int" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Ilosc" Type="int" Nullable="false" />
+          <Property Name="CenaJedn" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rabaty">
+          <Key>
+            <PropertyRef Name="RabatId" />
+          </Key>
+          <Property Name="RabatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Wartosc" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DataOd" Type="date" />
+          <Property Name="DataDo" Type="date" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaportyDefinicje">
+          <Key>
+            <PropertyRef Name="RaportDefinicjaId" />
+          </Key>
+          <Property Name="RaportDefinicjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="500" />
+          <Property Name="ZapytanieSql" Type="nvarchar(max)" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaportyWygenerowane">
+          <Key>
+            <PropertyRef Name="RaportWygenerowanyId" />
+          </Key>
+          <Property Name="RaportWygenerowanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RaportDefinicjaId" Type="int" Nullable="false" />
+          <Property Name="WygenerowalUzytkownikId" Type="int" />
+          <Property Name="Format" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="PlikUrl" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ParametryJson" Type="nvarchar(max)" />
+          <Property Name="DataGeneracji" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RejestracjeNaZajecia">
+          <Key>
+            <PropertyRef Name="RejestracjaId" />
+          </Key>
+          <Property Name="RejestracjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HarmonogramId" Type="int" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="DataRejestracji" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RezerwacjeTrenera">
+          <Key>
+            <PropertyRef Name="RezerwacjaId" />
+          </Key>
+          <Property Name="RezerwacjaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrenerId" Type="int" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="KlubId" Type="int" />
+          <Property Name="StartAt" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="EndAt" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RodzajeCzlonkostwa">
+          <Key>
+            <PropertyRef Name="RodzajCzlonkostwaId" />
+          </Key>
+          <Property Name="RodzajCzlonkostwaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cena" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OkresDni" Type="int" Nullable="false" />
+          <Property Name="CzyAktywny" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RodzajeZajec">
+          <Key>
+            <PropertyRef Name="RodzajZajecId" />
+          </Key>
+          <Property Name="RodzajZajecId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="RolaUprawnienie">
+          <Key>
+            <PropertyRef Name="RolaId" />
+            <PropertyRef Name="UprawnienieId" />
+          </Key>
+          <Property Name="RolaId" Type="int" Nullable="false" />
+          <Property Name="UprawnienieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RolaId" />
+          </Key>
+          <Property Name="RolaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SalaId" />
+          </Key>
+          <Property Name="SalaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Pojemnosc" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TrenerKlub">
+          <Key>
+            <PropertyRef Name="TrenerId" />
+            <PropertyRef Name="KlubId" />
+          </Key>
+          <Property Name="TrenerId" Type="int" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trenerzy">
+          <Key>
+            <PropertyRef Name="TrenerId" />
+          </Key>
+          <Property Name="TrenerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bio" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Udogodnienia">
+          <Key>
+            <PropertyRef Name="UdogodnienieId" />
+          </Key>
+          <Property Name="UdogodnienieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Uprawnienia">
+          <Key>
+            <PropertyRef Name="UprawnienieId" />
+          </Key>
+          <Property Name="UprawnienieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UzycieRabatu">
+          <Key>
+            <PropertyRef Name="UzycieRabatuId" />
+          </Key>
+          <Property Name="UzycieRabatuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RabatId" Type="int" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" />
+          <Property Name="ZamowienieId" Type="int" />
+          <Property Name="DataUzycia" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="UzytkownikId" />
+          </Key>
+          <Property Name="UzytkownikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="nvarchar" MaxLength="100" />
+          <Property Name="Nazwisko" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="320" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="UzytkownikRole">
+          <Key>
+            <PropertyRef Name="UzytkownikId" />
+            <PropertyRef Name="RolaId" />
+          </Key>
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="RolaId" Type="int" Nullable="false" />
+          <Property Name="DataNadania" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="ZamowienieId" />
+          </Key>
+          <Property Name="ZamowienieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UzytkownikId" Type="int" Nullable="false" />
+          <Property Name="KlubId" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SumaBrutto" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Waluta" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="MetodaPlatnosciId" Type="int" />
+          <Property Name="DataUtworzenia" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZdjeciaKlubu">
+          <Key>
+            <PropertyRef Name="ZdjecieId" />
+          </Key>
+          <Property Name="ZdjecieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlubId" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Kolejnosc" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="255" />
+          <Property Name="DataDodania" Type="datetime2" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CUNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="0..1" />
+          <End Role="CzlonkostwaUzytkownika" Type="Self.CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUNew_R">
+          <End Role="RodzajeCzlonkostwa" Type="Self.RodzajeCzlonkostwa" Multiplicity="1" />
+          <End Role="CzlonkostwaUzytkownika" Type="Self.CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajeCzlonkostwa">
+              <PropertyRef Name="RodzajCzlonkostwaId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="RodzajCzlonkostwaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="CzlonkostwaUzytkownika" Type="Self.CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="0..1" />
+          <End Role="DostepnoscTrenera" Type="Self.DostepnoscTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="DostepnoscTrenera">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTNew_T">
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="1" />
+          <End Role="DostepnoscTrenera" Type="Self.DostepnoscTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="DostepnoscTrenera">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GodzinyOtwarciaNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="GodzinyOtwarcia" Type="Self.GodzinyOtwarcia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="GodzinyOtwarcia">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="HarmonogramZajec" Type="Self.HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_R">
+          <End Role="RodzajeZajec" Type="Self.RodzajeZajec" Multiplicity="1" />
+          <End Role="HarmonogramZajec" Type="Self.HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajeZajec">
+              <PropertyRef Name="RodzajZajecId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="RodzajZajecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_S">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+          <End Role="HarmonogramZajec" Type="Self.HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SalaId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="SalaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_T">
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="0..1" />
+          <End Role="HarmonogramZajec" Type="Self.HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="KlubUdogodnienie" Type="Self.KlubUdogodnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="KlubUdogodnienie">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KUNew_U">
+          <End Role="Udogodnienia" Type="Self.Udogodnienia" Multiplicity="1" />
+          <End Role="KlubUdogodnienie" Type="Self.KlubUdogodnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Udogodnienia">
+              <PropertyRef Name="UdogodnienieId" />
+            </Principal>
+            <Dependent Role="KlubUdogodnienie">
+              <PropertyRef Name="UdogodnienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogiLogowanNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+          <End Role="LogiLogowan" Type="Self.LogiLogowan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="LogiLogowan">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpinieNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="Opinie" Type="Self.Opinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Opinie">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpinieNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="Opinie" Type="Self.Opinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Opinie">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PZNew_Z">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="1" />
+          <End Role="PozycjeZamowienia" Type="Self.PozycjeZamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Principal>
+            <Dependent Role="PozycjeZamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RNZNew_H">
+          <End Role="HarmonogramZajec" Type="Self.HarmonogramZajec" Multiplicity="1" />
+          <End Role="RejestracjeNaZajecia" Type="Self.RejestracjeNaZajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HarmonogramZajec">
+              <PropertyRef Name="HarmonogramId" />
+            </Principal>
+            <Dependent Role="RejestracjeNaZajecia">
+              <PropertyRef Name="HarmonogramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RNZNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="RejestracjeNaZajecia" Type="Self.RejestracjeNaZajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RejestracjeNaZajecia">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="0..1" />
+          <End Role="RezerwacjeTrenera" Type="Self.RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTNew_T">
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="1" />
+          <End Role="RezerwacjeTrenera" Type="Self.RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="RezerwacjeTrenera" Type="Self.RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUNew_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RolaUprawnienie" Type="Self.RolaUprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RolaId" />
+            </Principal>
+            <Dependent Role="RolaUprawnienie">
+              <PropertyRef Name="RolaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUNew_Up">
+          <End Role="Uprawnienia" Type="Self.Uprawnienia" Multiplicity="1" />
+          <End Role="RolaUprawnienie" Type="Self.RolaUprawnienie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uprawnienia">
+              <PropertyRef Name="UprawnienieId" />
+            </Principal>
+            <Dependent Role="RolaUprawnienie">
+              <PropertyRef Name="UprawnienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RWNew_RD">
+          <End Role="RaportyDefinicje" Type="Self.RaportyDefinicje" Multiplicity="1" />
+          <End Role="RaportyWygenerowane" Type="Self.RaportyWygenerowane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaportyDefinicje">
+              <PropertyRef Name="RaportDefinicjaId" />
+            </Principal>
+            <Dependent Role="RaportyWygenerowane">
+              <PropertyRef Name="RaportDefinicjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RWNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+          <End Role="RaportyWygenerowane" Type="Self.RaportyWygenerowane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RaportyWygenerowane">
+              <PropertyRef Name="WygenerowalUzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TKNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="TrenerKlub" Type="Self.TrenerKlub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="TrenerKlub">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TKNew_T">
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="1" />
+          <End Role="TrenerKlub" Type="Self.TrenerKlub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="TrenerKlub">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrenerzyNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Trenerzy">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_R">
+          <End Role="Rabaty" Type="Self.Rabaty" Multiplicity="1" />
+          <End Role="UzycieRabatu" Type="Self.UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabaty">
+              <PropertyRef Name="RabatId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="RabatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="0..1" />
+          <End Role="UzycieRabatu" Type="Self.UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_Z">
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+          <End Role="UzycieRabatu" Type="Self.UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="ZamowienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URNew_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UzytkownikRole" Type="Self.UzytkownikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RolaId" />
+            </Principal>
+            <Dependent Role="UzytkownikRole">
+              <PropertyRef Name="RolaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URNew_Uzytk">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="UzytkownikRole" Type="Self.UzytkownikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="UzytkownikRole">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZdjeciaKlubuNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="ZdjeciaKlubu" Type="Self.ZdjeciaKlubu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="ZdjeciaKlubu">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="0..1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_MP">
+          <End Role="MetodyPlatnosci" Type="Self.MetodyPlatnosci" Multiplicity="0..1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodyPlatnosci">
+              <PropertyRef Name="MetodaPlatnosciId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="MetodaPlatnosciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_U">
+          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
+          <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ActiveClubModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aktualnosci" EntityType="Self.Aktualnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CzlonkostwaUzytkownika" EntityType="Self.CzlonkostwaUzytkownika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DostepnoscTrenera" EntityType="Self.DostepnoscTrenera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GodzinyOtwarcia" EntityType="Self.GodzinyOtwarcia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HarmonogramZajec" EntityType="Self.HarmonogramZajec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KlubUdogodnienie" EntityType="Self.KlubUdogodnienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kluby" EntityType="Self.Kluby" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogiLogowan" EntityType="Self.LogiLogowan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MetodyPlatnosci" EntityType="Self.MetodyPlatnosci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opinie" EntityType="Self.Opinie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PozycjeZamowienia" EntityType="Self.PozycjeZamowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rabaty" EntityType="Self.Rabaty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaportyDefinicje" EntityType="Self.RaportyDefinicje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaportyWygenerowane" EntityType="Self.RaportyWygenerowane" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RejestracjeNaZajecia" EntityType="Self.RejestracjeNaZajecia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RezerwacjeTrenera" EntityType="Self.RezerwacjeTrenera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajeCzlonkostwa" EntityType="Self.RodzajeCzlonkostwa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RodzajeZajec" EntityType="Self.RodzajeZajec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolaUprawnienie" EntityType="Self.RolaUprawnienie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrenerKlub" EntityType="Self.TrenerKlub" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trenerzy" EntityType="Self.Trenerzy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Udogodnienia" EntityType="Self.Udogodnienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uprawnienia" EntityType="Self.Uprawnienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UzycieRabatu" EntityType="Self.UzycieRabatu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UzytkownikRole" EntityType="Self.UzytkownikRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZdjeciaKlubu" EntityType="Self.ZdjeciaKlubu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CUNew_K" Association="Self.FK_CUNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUNew_R" Association="Self.FK_CUNew_R">
+            <End Role="RodzajeCzlonkostwa" EntitySet="RodzajeCzlonkostwa" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUNew_U" Association="Self.FK_CUNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTNew_K" Association="Self.FK_DTNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="DostepnoscTrenera" EntitySet="DostepnoscTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTNew_T" Association="Self.FK_DTNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="DostepnoscTrenera" EntitySet="DostepnoscTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GodzinyOtwarciaNew_K" Association="Self.FK_GodzinyOtwarciaNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="GodzinyOtwarcia" EntitySet="GodzinyOtwarcia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_K" Association="Self.FK_HZNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_R" Association="Self.FK_HZNew_R">
+            <End Role="RodzajeZajec" EntitySet="RodzajeZajec" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_S" Association="Self.FK_HZNew_S">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_T" Association="Self.FK_HZNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUNew_K" Association="Self.FK_KUNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="KlubUdogodnienie" EntitySet="KlubUdogodnienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KUNew_U" Association="Self.FK_KUNew_U">
+            <End Role="Udogodnienia" EntitySet="Udogodnienia" />
+            <End Role="KlubUdogodnienie" EntitySet="KlubUdogodnienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogiLogowanNew_U" Association="Self.FK_LogiLogowanNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="LogiLogowan" EntitySet="LogiLogowan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpinieNew_K" Association="Self.FK_OpinieNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Opinie" EntitySet="Opinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpinieNew_U" Association="Self.FK_OpinieNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Opinie" EntitySet="Opinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PZNew_Z" Association="Self.FK_PZNew_Z">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="PozycjeZamowienia" EntitySet="PozycjeZamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RNZNew_H" Association="Self.FK_RNZNew_H">
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+            <End Role="RejestracjeNaZajecia" EntitySet="RejestracjeNaZajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RNZNew_U" Association="Self.FK_RNZNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RejestracjeNaZajecia" EntitySet="RejestracjeNaZajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTNew_K" Association="Self.FK_RTNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTNew_T" Association="Self.FK_RTNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTNew_U" Association="Self.FK_RTNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUNew_Role" Association="Self.FK_RUNew_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RolaUprawnienie" EntitySet="RolaUprawnienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUNew_Up" Association="Self.FK_RUNew_Up">
+            <End Role="Uprawnienia" EntitySet="Uprawnienia" />
+            <End Role="RolaUprawnienie" EntitySet="RolaUprawnienie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RWNew_RD" Association="Self.FK_RWNew_RD">
+            <End Role="RaportyDefinicje" EntitySet="RaportyDefinicje" />
+            <End Role="RaportyWygenerowane" EntitySet="RaportyWygenerowane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RWNew_U" Association="Self.FK_RWNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RaportyWygenerowane" EntitySet="RaportyWygenerowane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleNew_K" Association="Self.FK_SaleNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TKNew_K" Association="Self.FK_TKNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="TrenerKlub" EntitySet="TrenerKlub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TKNew_T" Association="Self.FK_TKNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="TrenerKlub" EntitySet="TrenerKlub" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrenerzyNew_U" Association="Self.FK_TrenerzyNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_R" Association="Self.FK_URabatNew_R">
+            <End Role="Rabaty" EntitySet="Rabaty" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_U" Association="Self.FK_URabatNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_Z" Association="Self.FK_URabatNew_Z">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URNew_Role" Association="Self.FK_URNew_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UzytkownikRole" EntitySet="UzytkownikRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URNew_Uzytk" Association="Self.FK_URNew_Uzytk">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="UzytkownikRole" EntitySet="UzytkownikRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZdjeciaKlubuNew_K" Association="Self.FK_ZdjeciaKlubuNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="ZdjeciaKlubu" EntitySet="ZdjeciaKlubu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_K" Association="Self.FK_ZNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_MP" Association="Self.FK_ZNew_MP">
+            <End Role="MetodyPlatnosci" EntitySet="MetodyPlatnosci" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_U" Association="Self.FK_ZNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ActiveClubModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GodzinyOtwarcia">
+          <Key>
+            <PropertyRef Name="GodzinyOtwarciaId" />
+          </Key>
+          <Property Name="GodzinyOtwarciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlubId" Type="Int32" Nullable="false" />
+          <Property Name="DzienTygodnia" Type="Byte" Nullable="false" />
+          <Property Name="GodzinaOd" Type="Time" Precision="0" />
+          <Property Name="GodzinaDo" Type="Time" Precision="0" />
+          <Property Name="CzyZamkniete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kluby" Relationship="Self.FK_GodzinyOtwarciaNew_K" FromRole="GodzinyOtwarcia" ToRole="Kluby" />
+        </EntityType>
+        <EntityType Name="Kluby">
+          <Key>
+            <PropertyRef Name="KlubId" />
+          </Key>
+          <Property Name="KlubId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Miasto" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Ulica" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="KodPocztowy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmailKontakt" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <Property Name="DataUtworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="GodzinyOtwarcia" Relationship="Self.FK_GodzinyOtwarciaNew_K" FromRole="Kluby" ToRole="GodzinyOtwarcia" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_SaleNew_K" FromRole="Kluby" ToRole="Sale" />
+          <NavigationProperty Name="Udogodnienia" Relationship="Self.KlubUdogodnienie" FromRole="Kluby" ToRole="Udogodnienia" />
+          <NavigationProperty Name="Trenerzy" Relationship="Self.TrenerKlub" FromRole="Kluby" ToRole="Trenerzy" />
+          <NavigationProperty Name="CzlonkostwaUzytkownika" Relationship="ActiveClubModel.FK_CUNew_K" FromRole="Kluby" ToRole="CzlonkostwaUzytkownika" />
+          <NavigationProperty Name="DostepnoscTrenera" Relationship="ActiveClubModel.FK_DTNew_K" FromRole="Kluby" ToRole="DostepnoscTrenera" />
+          <NavigationProperty Name="HarmonogramZajec" Relationship="ActiveClubModel.FK_HZNew_K" FromRole="Kluby" ToRole="HarmonogramZajec" />
+          <NavigationProperty Name="Opinie" Relationship="ActiveClubModel.FK_OpinieNew_K" FromRole="Kluby" ToRole="Opinie" />
+          <NavigationProperty Name="Zamowienia" Relationship="ActiveClubModel.FK_ZNew_K" FromRole="Kluby" ToRole="Zamowienia" />
+          <NavigationProperty Name="RezerwacjeTrenera" Relationship="ActiveClubModel.FK_RTNew_K" FromRole="Kluby" ToRole="RezerwacjeTrenera" />
+          <NavigationProperty Name="ZdjeciaKlubu" Relationship="ActiveClubModel.FK_ZdjeciaKlubuNew_K" FromRole="Kluby" ToRole="ZdjeciaKlubu" />
+        </EntityType>
+        <EntityType Name="MetodyPlatnosci">
+          <Key>
+            <PropertyRef Name="MetodaPlatnosciId" />
+          </Key>
+          <Property Name="MetodaPlatnosciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CzyAktywna" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Zamowienia" Relationship="ActiveClubModel.FK_ZNew_MP" FromRole="MetodyPlatnosci" ToRole="Zamowienia" />
+        </EntityType>
+        <EntityType Name="Rabaty">
+          <Key>
+            <PropertyRef Name="RabatId" />
+          </Key>
+          <Property Name="RabatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Typ" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Wartosc" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DataOd" Type="DateTime" Precision="0" />
+          <Property Name="DataDo" Type="DateTime" Precision="0" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UzycieRabatu" Relationship="ActiveClubModel.FK_URabatNew_R" FromRole="Rabaty" ToRole="UzycieRabatu" />
+        </EntityType>
+        <EntityType Name="RaportyDefinicje">
+          <Key>
+            <PropertyRef Name="RaportDefinicjaId" />
+          </Key>
+          <Property Name="RaportDefinicjaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ZapytanieSql" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="RaportyWygenerowane" Relationship="ActiveClubModel.FK_RWNew_RD" FromRole="RaportyDefinicje" ToRole="RaportyWygenerowane" />
+        </EntityType>
+        <EntityType Name="RodzajeCzlonkostwa">
+          <Key>
+            <PropertyRef Name="RodzajCzlonkostwaId" />
+          </Key>
+          <Property Name="RodzajCzlonkostwaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cena" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="OkresDni" Type="Int32" Nullable="false" />
+          <Property Name="CzyAktywny" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CzlonkostwaUzytkownika" Relationship="ActiveClubModel.FK_CUNew_R" FromRole="RodzajeCzlonkostwa" ToRole="CzlonkostwaUzytkownika" />
+        </EntityType>
+        <EntityType Name="RodzajeZajec">
+          <Key>
+            <PropertyRef Name="RodzajZajecId" />
+          </Key>
+          <Property Name="RodzajZajecId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="160" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HarmonogramZajec" Relationship="ActiveClubModel.FK_HZNew_R" FromRole="RodzajeZajec" ToRole="HarmonogramZajec" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RolaId" />
+          </Key>
+          <Property Name="RolaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UzytkownikRole" Relationship="Self.FK_URNew_Role" FromRole="Role" ToRole="UzytkownikRole" />
+          <NavigationProperty Name="Uprawnienia" Relationship="Self.RolaUprawnienie" FromRole="Role" ToRole="Uprawnienia" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SalaId" />
+          </Key>
+          <Property Name="SalaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlubId" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pojemnosc" Type="Int32" />
+          <NavigationProperty Name="Kluby" Relationship="Self.FK_SaleNew_K" FromRole="Sale" ToRole="Kluby" />
+          <NavigationProperty Name="HarmonogramZajec" Relationship="ActiveClubModel.FK_HZNew_S" FromRole="Sale" ToRole="HarmonogramZajec" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Trenerzy">
+          <Key>
+            <PropertyRef Name="TrenerId" />
+          </Key>
+          <Property Name="TrenerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UzytkownikId" Type="Int32" />
+          <Property Name="Imie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kluby" Relationship="Self.TrenerKlub" FromRole="Trenerzy" ToRole="Kluby" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_TrenerzyNew_U" FromRole="Trenerzy" ToRole="Uzytkownicy" />
+          <NavigationProperty Name="DostepnoscTrenera" Relationship="ActiveClubModel.FK_DTNew_T" FromRole="Trenerzy" ToRole="DostepnoscTrenera" />
+          <NavigationProperty Name="HarmonogramZajec" Relationship="ActiveClubModel.FK_HZNew_T" FromRole="Trenerzy" ToRole="HarmonogramZajec" />
+          <NavigationProperty Name="RezerwacjeTrenera" Relationship="ActiveClubModel.FK_RTNew_T" FromRole="Trenerzy" ToRole="RezerwacjeTrenera" />
+        </EntityType>
+        <EntityType Name="Udogodnienia">
+          <Key>
+            <PropertyRef Name="UdogodnienieId" />
+          </Key>
+          <Property Name="UdogodnienieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kluby" Relationship="Self.KlubUdogodnienie" FromRole="Udogodnienia" ToRole="Kluby" />
+        </EntityType>
+        <EntityType Name="Uprawnienia">
+          <Key>
+            <PropertyRef Name="UprawnienieId" />
+          </Key>
+          <Property Name="UprawnienieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="Self.RolaUprawnienie" FromRole="Uprawnienia" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="UzytkownikRole">
+          <Key>
+            <PropertyRef Name="UzytkownikId" />
+            <PropertyRef Name="RolaId" />
+          </Key>
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="RolaId" Type="Int32" Nullable="false" />
+          <Property Name="DataNadania" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_URNew_Role" FromRole="UzytkownikRole" ToRole="Role" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_URNew_Uzytk" FromRole="UzytkownikRole" ToRole="Uzytkownicy" />
+        </EntityType>
+        <Association Name="FK_GodzinyOtwarciaNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="GodzinyOtwarcia" Type="Self.GodzinyOtwarcia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="GodzinyOtwarcia">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleNew_K">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URNew_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UzytkownikRole" Type="Self.UzytkownikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RolaId" />
+            </Principal>
+            <Dependent Role="UzytkownikRole">
+              <PropertyRef Name="RolaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KlubUdogodnienie">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="*" />
+          <End Role="Udogodnienia" Type="Self.Udogodnienia" Multiplicity="*" />
+        </Association>
+        <Association Name="RolaUprawnienie">
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <End Role="Uprawnienia" Type="Self.Uprawnienia" Multiplicity="*" />
+        </Association>
+        <Association Name="TrenerKlub">
+          <End Role="Kluby" Type="Self.Kluby" Multiplicity="*" />
+          <End Role="Trenerzy" Type="Self.Trenerzy" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ActiveClubEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
+          <EntitySet Name="GodzinyOtwarcia" EntityType="Self.GodzinyOtwarcia" />
+          <EntitySet Name="Kluby" EntityType="Self.Kluby" />
+          <EntitySet Name="MetodyPlatnosci" EntityType="Self.MetodyPlatnosci" />
+          <EntitySet Name="Rabaty" EntityType="Self.Rabaty" />
+          <EntitySet Name="RaportyDefinicje" EntityType="Self.RaportyDefinicje" />
+          <EntitySet Name="RodzajeCzlonkostwa" EntityType="Self.RodzajeCzlonkostwa" />
+          <EntitySet Name="RodzajeZajec" EntityType="Self.RodzajeZajec" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Trenerzy" EntityType="Self.Trenerzy" />
+          <EntitySet Name="Udogodnienia" EntityType="Self.Udogodnienia" />
+          <EntitySet Name="Uprawnienia" EntityType="Self.Uprawnienia" />
+          <EntitySet Name="UzytkownikRole" EntityType="Self.UzytkownikRole" />
+          <AssociationSet Name="FK_GodzinyOtwarciaNew_K" Association="Self.FK_GodzinyOtwarciaNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="GodzinyOtwarcia" EntitySet="GodzinyOtwarcia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleNew_K" Association="Self.FK_SaleNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URNew_Role" Association="Self.FK_URNew_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UzytkownikRole" EntitySet="UzytkownikRole" />
+          </AssociationSet>
+          <AssociationSet Name="KlubUdogodnienie" Association="Self.KlubUdogodnienie">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Udogodnienia" EntitySet="Udogodnienia" />
+          </AssociationSet>
+          <AssociationSet Name="RolaUprawnienie" Association="Self.RolaUprawnienie">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Uprawnienia" EntitySet="Uprawnienia" />
+          </AssociationSet>
+          <AssociationSet Name="TrenerKlub" Association="Self.TrenerKlub">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+          </AssociationSet>
+          <EntitySet Name="Uzytkownicy" EntityType="ActiveClubModel.Uzytkownicy" />
+          <AssociationSet Name="FK_TrenerzyNew_U" Association="ActiveClubModel.FK_TrenerzyNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URNew_Uzytk" Association="ActiveClubModel.FK_URNew_Uzytk">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="UzytkownikRole" EntitySet="UzytkownikRole" />
+          </AssociationSet>
+          <EntitySet Name="CzlonkostwaUzytkownika" EntityType="ActiveClubModel.CzlonkostwaUzytkownika" />
+          <EntitySet Name="DostepnoscTrenera" EntityType="ActiveClubModel.DostepnoscTrenera" />
+          <EntitySet Name="HarmonogramZajec" EntityType="ActiveClubModel.HarmonogramZajec" />
+          <EntitySet Name="LogiLogowan" EntityType="ActiveClubModel.LogiLogowan" />
+          <EntitySet Name="Opinie" EntityType="ActiveClubModel.Opinie" />
+          <EntitySet Name="RaportyWygenerowane" EntityType="ActiveClubModel.RaportyWygenerowane" />
+          <EntitySet Name="RejestracjeNaZajecia" EntityType="ActiveClubModel.RejestracjeNaZajecia" />
+          <EntitySet Name="Zamowienia" EntityType="ActiveClubModel.Zamowienia" />
+          <AssociationSet Name="FK_CUNew_K" Association="ActiveClubModel.FK_CUNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUNew_R" Association="ActiveClubModel.FK_CUNew_R">
+            <End Role="RodzajeCzlonkostwa" EntitySet="RodzajeCzlonkostwa" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUNew_U" Association="ActiveClubModel.FK_CUNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="CzlonkostwaUzytkownika" EntitySet="CzlonkostwaUzytkownika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTNew_K" Association="ActiveClubModel.FK_DTNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="DostepnoscTrenera" EntitySet="DostepnoscTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DTNew_T" Association="ActiveClubModel.FK_DTNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="DostepnoscTrenera" EntitySet="DostepnoscTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_K" Association="ActiveClubModel.FK_HZNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_R" Association="ActiveClubModel.FK_HZNew_R">
+            <End Role="RodzajeZajec" EntitySet="RodzajeZajec" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_S" Association="ActiveClubModel.FK_HZNew_S">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HZNew_T" Association="ActiveClubModel.FK_HZNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RNZNew_H" Association="ActiveClubModel.FK_RNZNew_H">
+            <End Role="HarmonogramZajec" EntitySet="HarmonogramZajec" />
+            <End Role="RejestracjeNaZajecia" EntitySet="RejestracjeNaZajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpinieNew_K" Association="ActiveClubModel.FK_OpinieNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Opinie" EntitySet="Opinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_K" Association="ActiveClubModel.FK_ZNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LogiLogowanNew_U" Association="ActiveClubModel.FK_LogiLogowanNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="LogiLogowan" EntitySet="LogiLogowan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_MP" Association="ActiveClubModel.FK_ZNew_MP">
+            <End Role="MetodyPlatnosci" EntitySet="MetodyPlatnosci" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpinieNew_U" Association="ActiveClubModel.FK_OpinieNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Opinie" EntitySet="Opinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RWNew_RD" Association="ActiveClubModel.FK_RWNew_RD">
+            <End Role="RaportyDefinicje" EntitySet="RaportyDefinicje" />
+            <End Role="RaportyWygenerowane" EntitySet="RaportyWygenerowane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RWNew_U" Association="ActiveClubModel.FK_RWNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RaportyWygenerowane" EntitySet="RaportyWygenerowane" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RNZNew_U" Association="ActiveClubModel.FK_RNZNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RejestracjeNaZajecia" EntitySet="RejestracjeNaZajecia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZNew_U" Association="ActiveClubModel.FK_ZNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+          </AssociationSet>
+          <EntitySet Name="PozycjeZamowienia" EntityType="ActiveClubModel.PozycjeZamowienia" />
+          <EntitySet Name="UzycieRabatu" EntityType="ActiveClubModel.UzycieRabatu" />
+          <AssociationSet Name="FK_PZNew_Z" Association="ActiveClubModel.FK_PZNew_Z">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="PozycjeZamowienia" EntitySet="PozycjeZamowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_R" Association="ActiveClubModel.FK_URabatNew_R">
+            <End Role="Rabaty" EntitySet="Rabaty" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_U" Association="ActiveClubModel.FK_URabatNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_URabatNew_Z" Association="ActiveClubModel.FK_URabatNew_Z">
+            <End Role="Zamowienia" EntitySet="Zamowienia" />
+            <End Role="UzycieRabatu" EntitySet="UzycieRabatu" />
+          </AssociationSet>
+          <EntitySet Name="RezerwacjeTrenera" EntityType="ActiveClubModel.RezerwacjeTrenera" />
+          <EntitySet Name="ZdjeciaKlubu" EntityType="ActiveClubModel.ZdjeciaKlubu" />
+          <AssociationSet Name="FK_RTNew_K" Association="ActiveClubModel.FK_RTNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ZdjeciaKlubuNew_K" Association="ActiveClubModel.FK_ZdjeciaKlubuNew_K">
+            <End Role="Kluby" EntitySet="Kluby" />
+            <End Role="ZdjeciaKlubu" EntitySet="ZdjeciaKlubu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTNew_T" Association="ActiveClubModel.FK_RTNew_T">
+            <End Role="Trenerzy" EntitySet="Trenerzy" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTNew_U" Association="ActiveClubModel.FK_RTNew_U">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="RezerwacjeTrenera" EntitySet="RezerwacjeTrenera" />
+          </AssociationSet>
+          <EntitySet Name="Aktualnosci" EntityType="ActiveClubModel.Aktualnosci" />
+        </EntityContainer>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="UzytkownikId" />
+          </Key>
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="DataUtworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Telefon" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Trenerzy" Relationship="ActiveClubModel.FK_TrenerzyNew_U" FromRole="Uzytkownicy" ToRole="Trenerzy" />
+          <NavigationProperty Name="UzytkownikRole" Relationship="ActiveClubModel.FK_URNew_Uzytk" FromRole="Uzytkownicy" ToRole="UzytkownikRole" />
+          <NavigationProperty Name="CzlonkostwaUzytkownika" Relationship="ActiveClubModel.FK_CUNew_U" FromRole="Uzytkownicy" ToRole="CzlonkostwaUzytkownika" />
+          <NavigationProperty Name="LogiLogowan" Relationship="ActiveClubModel.FK_LogiLogowanNew_U" FromRole="Uzytkownicy" ToRole="LogiLogowan" />
+          <NavigationProperty Name="Opinie" Relationship="ActiveClubModel.FK_OpinieNew_U" FromRole="Uzytkownicy" ToRole="Opinie" />
+          <NavigationProperty Name="RaportyWygenerowane" Relationship="ActiveClubModel.FK_RWNew_U" FromRole="Uzytkownicy" ToRole="RaportyWygenerowane" />
+          <NavigationProperty Name="RejestracjeNaZajecia" Relationship="ActiveClubModel.FK_RNZNew_U" FromRole="Uzytkownicy" ToRole="RejestracjeNaZajecia" />
+          <NavigationProperty Name="Zamowienia" Relationship="ActiveClubModel.FK_ZNew_U" FromRole="Uzytkownicy" ToRole="Zamowienia" />
+          <NavigationProperty Name="UzycieRabatu" Relationship="ActiveClubModel.FK_URabatNew_U" FromRole="Uzytkownicy" ToRole="UzycieRabatu" />
+          <NavigationProperty Name="RezerwacjeTrenera" Relationship="ActiveClubModel.FK_RTNew_U" FromRole="Uzytkownicy" ToRole="RezerwacjeTrenera" />
+        </EntityType>
+        <Association Name="FK_TrenerzyNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.Trenerzy" Role="Trenerzy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Trenerzy">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URNew_Uzytk">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.UzytkownikRole" Role="UzytkownikRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="UzytkownikRole">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CzlonkostwaUzytkownika">
+          <Key>
+            <PropertyRef Name="CzlonkostwoId" />
+          </Key>
+          <Property Name="CzlonkostwoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="RodzajCzlonkostwaId" Type="Int32" Nullable="false" />
+          <Property Name="KlubId" Type="Int32" />
+          <Property Name="StartAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DataUtworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_CUNew_K" FromRole="CzlonkostwaUzytkownika" ToRole="Kluby" />
+          <NavigationProperty Name="RodzajeCzlonkostwa" Relationship="ActiveClubModel.FK_CUNew_R" FromRole="CzlonkostwaUzytkownika" ToRole="RodzajeCzlonkostwa" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_CUNew_U" FromRole="CzlonkostwaUzytkownika" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="DostepnoscTrenera">
+          <Key>
+            <PropertyRef Name="DostepnoscId" />
+          </Key>
+          <Property Name="DostepnoscId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrenerId" Type="Int32" Nullable="false" />
+          <Property Name="KlubId" Type="Int32" />
+          <Property Name="StartAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndAt" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_DTNew_K" FromRole="DostepnoscTrenera" ToRole="Kluby" />
+          <NavigationProperty Name="Trenerzy" Relationship="ActiveClubModel.FK_DTNew_T" FromRole="DostepnoscTrenera" ToRole="Trenerzy" />
+        </EntityType>
+        <EntityType Name="HarmonogramZajec">
+          <Key>
+            <PropertyRef Name="HarmonogramId" />
+          </Key>
+          <Property Name="HarmonogramId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlubId" Type="Int32" Nullable="false" />
+          <Property Name="RodzajZajecId" Type="Int32" Nullable="false" />
+          <Property Name="SalaId" Type="Int32" />
+          <Property Name="TrenerId" Type="Int32" />
+          <Property Name="StartAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LimitMiejsc" Type="Int32" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_HZNew_K" FromRole="HarmonogramZajec" ToRole="Kluby" />
+          <NavigationProperty Name="RodzajeZajec" Relationship="ActiveClubModel.FK_HZNew_R" FromRole="HarmonogramZajec" ToRole="RodzajeZajec" />
+          <NavigationProperty Name="Sale" Relationship="ActiveClubModel.FK_HZNew_S" FromRole="HarmonogramZajec" ToRole="Sale" />
+          <NavigationProperty Name="Trenerzy" Relationship="ActiveClubModel.FK_HZNew_T" FromRole="HarmonogramZajec" ToRole="Trenerzy" />
+          <NavigationProperty Name="RejestracjeNaZajecia" Relationship="ActiveClubModel.FK_RNZNew_H" FromRole="HarmonogramZajec" ToRole="RejestracjeNaZajecia" />
+        </EntityType>
+        <EntityType Name="LogiLogowan">
+          <Key>
+            <PropertyRef Name="LogowanieId" />
+          </Key>
+          <Property Name="LogowanieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UzytkownikId" Type="Int32" />
+          <Property Name="EmailWpisany" Type="String" MaxLength="320" FixedLength="false" Unicode="true" />
+          <Property Name="CzySukces" Type="Boolean" Nullable="false" />
+          <Property Name="Ip" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="DataZdarzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_LogiLogowanNew_U" FromRole="LogiLogowan" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="Opinie">
+          <Key>
+            <PropertyRef Name="OpiniaId" />
+          </Key>
+          <Property Name="OpiniaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlubId" Type="Int32" Nullable="false" />
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="Ocena" Type="Byte" Nullable="false" />
+          <Property Name="Komentarz" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_OpinieNew_K" FromRole="Opinie" ToRole="Kluby" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_OpinieNew_U" FromRole="Opinie" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="RaportyWygenerowane">
+          <Key>
+            <PropertyRef Name="RaportWygenerowanyId" />
+          </Key>
+          <Property Name="RaportWygenerowanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaportDefinicjaId" Type="Int32" Nullable="false" />
+          <Property Name="WygenerowalUzytkownikId" Type="Int32" />
+          <Property Name="Format" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="PlikUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ParametryJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataGeneracji" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="RaportyDefinicje" Relationship="ActiveClubModel.FK_RWNew_RD" FromRole="RaportyWygenerowane" ToRole="RaportyDefinicje" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_RWNew_U" FromRole="RaportyWygenerowane" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="RejestracjeNaZajecia">
+          <Key>
+            <PropertyRef Name="RejestracjaId" />
+          </Key>
+          <Property Name="RejestracjaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HarmonogramId" Type="Int32" Nullable="false" />
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DataRejestracji" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="HarmonogramZajec" Relationship="ActiveClubModel.FK_RNZNew_H" FromRole="RejestracjeNaZajecia" ToRole="HarmonogramZajec" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_RNZNew_U" FromRole="RejestracjeNaZajecia" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="Zamowienia">
+          <Key>
+            <PropertyRef Name="ZamowienieId" />
+          </Key>
+          <Property Name="ZamowienieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="KlubId" Type="Int32" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SumaBrutto" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Waluta" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="MetodaPlatnosciId" Type="Int32" />
+          <Property Name="DataUtworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_ZNew_K" FromRole="Zamowienia" ToRole="Kluby" />
+          <NavigationProperty Name="MetodyPlatnosci" Relationship="ActiveClubModel.FK_ZNew_MP" FromRole="Zamowienia" ToRole="MetodyPlatnosci" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_ZNew_U" FromRole="Zamowienia" ToRole="Uzytkownicy" />
+          <NavigationProperty Name="PozycjeZamowienia" Relationship="ActiveClubModel.FK_PZNew_Z" FromRole="Zamowienia" ToRole="PozycjeZamowienia" />
+          <NavigationProperty Name="UzycieRabatu" Relationship="ActiveClubModel.FK_URabatNew_Z" FromRole="Zamowienia" ToRole="UzycieRabatu" />
+        </EntityType>
+        <Association Name="FK_CUNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.CzlonkostwaUzytkownika" Role="CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUNew_R">
+          <End Type="ActiveClubModel.RodzajeCzlonkostwa" Role="RodzajeCzlonkostwa" Multiplicity="1" />
+          <End Type="ActiveClubModel.CzlonkostwaUzytkownika" Role="CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajeCzlonkostwa">
+              <PropertyRef Name="RodzajCzlonkostwaId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="RodzajCzlonkostwaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.CzlonkostwaUzytkownika" Role="CzlonkostwaUzytkownika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="CzlonkostwaUzytkownika">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.DostepnoscTrenera" Role="DostepnoscTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="DostepnoscTrenera">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DTNew_T">
+          <End Type="ActiveClubModel.Trenerzy" Role="Trenerzy" Multiplicity="1" />
+          <End Type="ActiveClubModel.DostepnoscTrenera" Role="DostepnoscTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="DostepnoscTrenera">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="1" />
+          <End Type="ActiveClubModel.HarmonogramZajec" Role="HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_R">
+          <End Type="ActiveClubModel.RodzajeZajec" Role="RodzajeZajec" Multiplicity="1" />
+          <End Type="ActiveClubModel.HarmonogramZajec" Role="HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RodzajeZajec">
+              <PropertyRef Name="RodzajZajecId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="RodzajZajecId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_S">
+          <End Type="ActiveClubModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.HarmonogramZajec" Role="HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="SalaId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="SalaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HZNew_T">
+          <End Type="ActiveClubModel.Trenerzy" Role="Trenerzy" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.HarmonogramZajec" Role="HarmonogramZajec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="HarmonogramZajec">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RNZNew_H">
+          <End Type="ActiveClubModel.HarmonogramZajec" Role="HarmonogramZajec" Multiplicity="1" />
+          <End Type="ActiveClubModel.RejestracjeNaZajecia" Role="RejestracjeNaZajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HarmonogramZajec">
+              <PropertyRef Name="HarmonogramId" />
+            </Principal>
+            <Dependent Role="RejestracjeNaZajecia">
+              <PropertyRef Name="HarmonogramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpinieNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="1" />
+          <End Type="ActiveClubModel.Opinie" Role="Opinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Opinie">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.Zamowienia" Role="Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LogiLogowanNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.LogiLogowan" Role="LogiLogowan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="LogiLogowan">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_MP">
+          <End Type="ActiveClubModel.MetodyPlatnosci" Role="MetodyPlatnosci" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.Zamowienia" Role="Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetodyPlatnosci">
+              <PropertyRef Name="MetodaPlatnosciId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="MetodaPlatnosciId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpinieNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.Opinie" Role="Opinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Opinie">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RWNew_RD">
+          <End Type="ActiveClubModel.RaportyDefinicje" Role="RaportyDefinicje" Multiplicity="1" />
+          <End Type="ActiveClubModel.RaportyWygenerowane" Role="RaportyWygenerowane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaportyDefinicje">
+              <PropertyRef Name="RaportDefinicjaId" />
+            </Principal>
+            <Dependent Role="RaportyWygenerowane">
+              <PropertyRef Name="RaportDefinicjaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RWNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.RaportyWygenerowane" Role="RaportyWygenerowane" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RaportyWygenerowane">
+              <PropertyRef Name="WygenerowalUzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RNZNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.RejestracjeNaZajecia" Role="RejestracjeNaZajecia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RejestracjeNaZajecia">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.Zamowienia" Role="Zamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="Zamowienia">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PozycjeZamowienia">
+          <Key>
+            <PropertyRef Name="PozycjaId" />
+          </Key>
+          <Property Name="PozycjaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZamowienieId" Type="Int32" Nullable="false" />
+          <Property Name="Typ" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="RefId" Type="Int32" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Ilosc" Type="Int32" Nullable="false" />
+          <Property Name="CenaJedn" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Zamowienia" Relationship="ActiveClubModel.FK_PZNew_Z" FromRole="PozycjeZamowienia" ToRole="Zamowienia" />
+        </EntityType>
+        <EntityType Name="UzycieRabatu">
+          <Key>
+            <PropertyRef Name="UzycieRabatuId" />
+          </Key>
+          <Property Name="UzycieRabatuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RabatId" Type="Int32" Nullable="false" />
+          <Property Name="UzytkownikId" Type="Int32" />
+          <Property Name="ZamowienieId" Type="Int32" />
+          <Property Name="DataUzycia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Rabaty" Relationship="ActiveClubModel.FK_URabatNew_R" FromRole="UzycieRabatu" ToRole="Rabaty" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_URabatNew_U" FromRole="UzycieRabatu" ToRole="Uzytkownicy" />
+          <NavigationProperty Name="Zamowienia" Relationship="ActiveClubModel.FK_URabatNew_Z" FromRole="UzycieRabatu" ToRole="Zamowienia" />
+        </EntityType>
+        <Association Name="FK_PZNew_Z">
+          <End Type="ActiveClubModel.Zamowienia" Role="Zamowienia" Multiplicity="1" />
+          <End Type="ActiveClubModel.PozycjeZamowienia" Role="PozycjeZamowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Principal>
+            <Dependent Role="PozycjeZamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_R">
+          <End Type="ActiveClubModel.Rabaty" Role="Rabaty" Multiplicity="1" />
+          <End Type="ActiveClubModel.UzycieRabatu" Role="UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rabaty">
+              <PropertyRef Name="RabatId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="RabatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.UzycieRabatu" Role="UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_URabatNew_Z">
+          <End Type="ActiveClubModel.Zamowienia" Role="Zamowienia" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.UzycieRabatu" Role="UzycieRabatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zamowienia">
+              <PropertyRef Name="ZamowienieId" />
+            </Principal>
+            <Dependent Role="UzycieRabatu">
+              <PropertyRef Name="ZamowienieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RezerwacjeTrenera">
+          <Key>
+            <PropertyRef Name="RezerwacjaId" />
+          </Key>
+          <Property Name="RezerwacjaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrenerId" Type="Int32" Nullable="false" />
+          <Property Name="UzytkownikId" Type="Int32" Nullable="false" />
+          <Property Name="KlubId" Type="Int32" />
+          <Property Name="StartAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndAt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_RTNew_K" FromRole="RezerwacjeTrenera" ToRole="Kluby" />
+          <NavigationProperty Name="Trenerzy" Relationship="ActiveClubModel.FK_RTNew_T" FromRole="RezerwacjeTrenera" ToRole="Trenerzy" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="ActiveClubModel.FK_RTNew_U" FromRole="RezerwacjeTrenera" ToRole="Uzytkownicy" />
+        </EntityType>
+        <EntityType Name="ZdjeciaKlubu">
+          <Key>
+            <PropertyRef Name="ZdjecieId" />
+          </Key>
+          <Property Name="ZdjecieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlubId" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Kolejnosc" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Kluby" Relationship="ActiveClubModel.FK_ZdjeciaKlubuNew_K" FromRole="ZdjeciaKlubu" ToRole="Kluby" />
+        </EntityType>
+        <Association Name="FK_RTNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="0..1" />
+          <End Type="ActiveClubModel.RezerwacjeTrenera" Role="RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ZdjeciaKlubuNew_K">
+          <End Type="ActiveClubModel.Kluby" Role="Kluby" Multiplicity="1" />
+          <End Type="ActiveClubModel.ZdjeciaKlubu" Role="ZdjeciaKlubu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kluby">
+              <PropertyRef Name="KlubId" />
+            </Principal>
+            <Dependent Role="ZdjeciaKlubu">
+              <PropertyRef Name="KlubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTNew_T">
+          <End Type="ActiveClubModel.Trenerzy" Role="Trenerzy" Multiplicity="1" />
+          <End Type="ActiveClubModel.RezerwacjeTrenera" Role="RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trenerzy">
+              <PropertyRef Name="TrenerId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="TrenerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTNew_U">
+          <End Type="ActiveClubModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="ActiveClubModel.RezerwacjeTrenera" Role="RezerwacjeTrenera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="UzytkownikId" />
+            </Principal>
+            <Dependent Role="RezerwacjeTrenera">
+              <PropertyRef Name="UzytkownikId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Aktualnosci">
+          <Key>
+            <PropertyRef Name="AktualnoscId" />
+          </Key>
+          <Property Name="AktualnoscId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tytul" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Tresc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataDodania" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ActiveClubModelStoreContainer" CdmEntityContainer="ActiveClubEntities1">
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="ActiveClubModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GodzinyOtwarcia">
+            <EntityTypeMapping TypeName="ActiveClubModel.GodzinyOtwarcia">
+              <MappingFragment StoreEntitySet="GodzinyOtwarcia">
+                <ScalarProperty Name="GodzinyOtwarciaId" ColumnName="GodzinyOtwarciaId" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="DzienTygodnia" ColumnName="DzienTygodnia" />
+                <ScalarProperty Name="GodzinaOd" ColumnName="GodzinaOd" />
+                <ScalarProperty Name="GodzinaDo" ColumnName="GodzinaDo" />
+                <ScalarProperty Name="CzyZamkniete" ColumnName="CzyZamkniete" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kluby">
+            <EntityTypeMapping TypeName="ActiveClubModel.Kluby">
+              <MappingFragment StoreEntitySet="Kluby">
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+                <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+                <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="EmailKontakt" ColumnName="EmailKontakt" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MetodyPlatnosci">
+            <EntityTypeMapping TypeName="ActiveClubModel.MetodyPlatnosci">
+              <MappingFragment StoreEntitySet="MetodyPlatnosci">
+                <ScalarProperty Name="MetodaPlatnosciId" ColumnName="MetodaPlatnosciId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="CzyAktywna" ColumnName="CzyAktywna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rabaty">
+            <EntityTypeMapping TypeName="ActiveClubModel.Rabaty">
+              <MappingFragment StoreEntitySet="Rabaty">
+                <ScalarProperty Name="RabatId" ColumnName="RabatId" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Wartosc" ColumnName="Wartosc" />
+                <ScalarProperty Name="DataOd" ColumnName="DataOd" />
+                <ScalarProperty Name="DataDo" ColumnName="DataDo" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaportyDefinicje">
+            <EntityTypeMapping TypeName="ActiveClubModel.RaportyDefinicje">
+              <MappingFragment StoreEntitySet="RaportyDefinicje">
+                <ScalarProperty Name="RaportDefinicjaId" ColumnName="RaportDefinicjaId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="ZapytanieSql" ColumnName="ZapytanieSql" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RodzajeCzlonkostwa">
+            <EntityTypeMapping TypeName="ActiveClubModel.RodzajeCzlonkostwa">
+              <MappingFragment StoreEntitySet="RodzajeCzlonkostwa">
+                <ScalarProperty Name="RodzajCzlonkostwaId" ColumnName="RodzajCzlonkostwaId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="OkresDni" ColumnName="OkresDni" />
+                <ScalarProperty Name="CzyAktywny" ColumnName="CzyAktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RodzajeZajec">
+            <EntityTypeMapping TypeName="ActiveClubModel.RodzajeZajec">
+              <MappingFragment StoreEntitySet="RodzajeZajec">
+                <ScalarProperty Name="RodzajZajecId" ColumnName="RodzajZajecId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ActiveClubModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RolaId" ColumnName="RolaId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale">
+            <EntityTypeMapping TypeName="ActiveClubModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="SalaId" ColumnName="SalaId" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Pojemnosc" ColumnName="Pojemnosc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ActiveClubModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trenerzy">
+            <EntityTypeMapping TypeName="ActiveClubModel.Trenerzy">
+              <MappingFragment StoreEntitySet="Trenerzy">
+                <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Bio" ColumnName="Bio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Udogodnienia">
+            <EntityTypeMapping TypeName="ActiveClubModel.Udogodnienia">
+              <MappingFragment StoreEntitySet="Udogodnienia">
+                <ScalarProperty Name="UdogodnienieId" ColumnName="UdogodnienieId" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uprawnienia">
+            <EntityTypeMapping TypeName="ActiveClubModel.Uprawnienia">
+              <MappingFragment StoreEntitySet="Uprawnienia">
+                <ScalarProperty Name="UprawnienieId" ColumnName="UprawnienieId" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UzytkownikRole">
+            <EntityTypeMapping TypeName="ActiveClubModel.UzytkownikRole">
+              <MappingFragment StoreEntitySet="UzytkownikRole">
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="RolaId" ColumnName="RolaId" />
+                <ScalarProperty Name="DataNadania" ColumnName="DataNadania" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="KlubUdogodnienie" TypeName="ActiveClubModel.KlubUdogodnienie" StoreEntitySet="KlubUdogodnienie">
+            <EndProperty Name="Kluby">
+              <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+            </EndProperty>
+            <EndProperty Name="Udogodnienia">
+              <ScalarProperty Name="UdogodnienieId" ColumnName="UdogodnienieId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RolaUprawnienie" TypeName="ActiveClubModel.RolaUprawnienie" StoreEntitySet="RolaUprawnienie">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="RolaId" ColumnName="RolaId" />
+            </EndProperty>
+            <EndProperty Name="Uprawnienia">
+              <ScalarProperty Name="UprawnienieId" ColumnName="UprawnienieId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TrenerKlub" TypeName="ActiveClubModel.TrenerKlub" StoreEntitySet="TrenerKlub">
+            <EndProperty Name="Kluby">
+              <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+            </EndProperty>
+            <EndProperty Name="Trenerzy">
+              <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Uzytkownicy">
+            <EntityTypeMapping TypeName="ActiveClubModel.Uzytkownicy">
+              <MappingFragment StoreEntitySet="Uzytkownicy">
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CzlonkostwaUzytkownika">
+            <EntityTypeMapping TypeName="ActiveClubModel.CzlonkostwaUzytkownika">
+              <MappingFragment StoreEntitySet="CzlonkostwaUzytkownika">
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="RodzajCzlonkostwaId" ColumnName="RodzajCzlonkostwaId" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="CzlonkostwoId" ColumnName="CzlonkostwoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DostepnoscTrenera">
+            <EntityTypeMapping TypeName="ActiveClubModel.DostepnoscTrenera">
+              <MappingFragment StoreEntitySet="DostepnoscTrenera">
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+                <ScalarProperty Name="DostepnoscId" ColumnName="DostepnoscId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HarmonogramZajec">
+            <EntityTypeMapping TypeName="ActiveClubModel.HarmonogramZajec">
+              <MappingFragment StoreEntitySet="HarmonogramZajec">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LimitMiejsc" ColumnName="LimitMiejsc" />
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+                <ScalarProperty Name="SalaId" ColumnName="SalaId" />
+                <ScalarProperty Name="RodzajZajecId" ColumnName="RodzajZajecId" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="HarmonogramId" ColumnName="HarmonogramId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogiLogowan">
+            <EntityTypeMapping TypeName="ActiveClubModel.LogiLogowan">
+              <MappingFragment StoreEntitySet="LogiLogowan">
+                <ScalarProperty Name="DataZdarzenia" ColumnName="DataZdarzenia" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="CzySukces" ColumnName="CzySukces" />
+                <ScalarProperty Name="EmailWpisany" ColumnName="EmailWpisany" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="LogowanieId" ColumnName="LogowanieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opinie">
+            <EntityTypeMapping TypeName="ActiveClubModel.Opinie">
+              <MappingFragment StoreEntitySet="Opinie">
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="Komentarz" ColumnName="Komentarz" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="OpiniaId" ColumnName="OpiniaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaportyWygenerowane">
+            <EntityTypeMapping TypeName="ActiveClubModel.RaportyWygenerowane">
+              <MappingFragment StoreEntitySet="RaportyWygenerowane">
+                <ScalarProperty Name="DataGeneracji" ColumnName="DataGeneracji" />
+                <ScalarProperty Name="ParametryJson" ColumnName="ParametryJson" />
+                <ScalarProperty Name="PlikUrl" ColumnName="PlikUrl" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="WygenerowalUzytkownikId" ColumnName="WygenerowalUzytkownikId" />
+                <ScalarProperty Name="RaportDefinicjaId" ColumnName="RaportDefinicjaId" />
+                <ScalarProperty Name="RaportWygenerowanyId" ColumnName="RaportWygenerowanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RejestracjeNaZajecia">
+            <EntityTypeMapping TypeName="ActiveClubModel.RejestracjeNaZajecia">
+              <MappingFragment StoreEntitySet="RejestracjeNaZajecia">
+                <ScalarProperty Name="DataRejestracji" ColumnName="DataRejestracji" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="HarmonogramId" ColumnName="HarmonogramId" />
+                <ScalarProperty Name="RejestracjaId" ColumnName="RejestracjaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zamowienia">
+            <EntityTypeMapping TypeName="ActiveClubModel.Zamowienia">
+              <MappingFragment StoreEntitySet="Zamowienia">
+                <ScalarProperty Name="DataUtworzenia" ColumnName="DataUtworzenia" />
+                <ScalarProperty Name="MetodaPlatnosciId" ColumnName="MetodaPlatnosciId" />
+                <ScalarProperty Name="Waluta" ColumnName="Waluta" />
+                <ScalarProperty Name="SumaBrutto" ColumnName="SumaBrutto" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="ZamowienieId" ColumnName="ZamowienieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PozycjeZamowienia">
+            <EntityTypeMapping TypeName="ActiveClubModel.PozycjeZamowienia">
+              <MappingFragment StoreEntitySet="PozycjeZamowienia">
+                <ScalarProperty Name="CenaJedn" ColumnName="CenaJedn" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="RefId" ColumnName="RefId" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="ZamowienieId" ColumnName="ZamowienieId" />
+                <ScalarProperty Name="PozycjaId" ColumnName="PozycjaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UzycieRabatu">
+            <EntityTypeMapping TypeName="ActiveClubModel.UzycieRabatu">
+              <MappingFragment StoreEntitySet="UzycieRabatu">
+                <ScalarProperty Name="DataUzycia" ColumnName="DataUzycia" />
+                <ScalarProperty Name="ZamowienieId" ColumnName="ZamowienieId" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="RabatId" ColumnName="RabatId" />
+                <ScalarProperty Name="UzycieRabatuId" ColumnName="UzycieRabatuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RezerwacjeTrenera">
+            <EntityTypeMapping TypeName="ActiveClubModel.RezerwacjeTrenera">
+              <MappingFragment StoreEntitySet="RezerwacjeTrenera">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndAt" ColumnName="EndAt" />
+                <ScalarProperty Name="StartAt" ColumnName="StartAt" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="UzytkownikId" ColumnName="UzytkownikId" />
+                <ScalarProperty Name="TrenerId" ColumnName="TrenerId" />
+                <ScalarProperty Name="RezerwacjaId" ColumnName="RezerwacjaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZdjeciaKlubu">
+            <EntityTypeMapping TypeName="ActiveClubModel.ZdjeciaKlubu">
+              <MappingFragment StoreEntitySet="ZdjeciaKlubu">
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Kolejnosc" ColumnName="Kolejnosc" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="KlubId" ColumnName="KlubId" />
+                <ScalarProperty Name="ZdjecieId" ColumnName="ZdjecieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Aktualnosci">
+            <EntityTypeMapping TypeName="ActiveClubModel.Aktualnosci">
+              <MappingFragment StoreEntitySet="Aktualnosci">
+                <ScalarProperty Name="DataDodania" ColumnName="DataDodania" />
+                <ScalarProperty Name="Tresc" ColumnName="Tresc" />
+                <ScalarProperty Name="Tytul" ColumnName="Tytul" />
+                <ScalarProperty Name="AktualnoscId" ColumnName="AktualnoscId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

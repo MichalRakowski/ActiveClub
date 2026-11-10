@@ -1,0 +1,98 @@
+﻿@using ActiveClub.Shared.DTOs.RodzajeCzlonkostwa
+@using ActiveClub.Shared.DTOs.Kluby
+@model IReadOnlyList<RodzajCzlonkostwaDto>
+
+@{
+    ViewData["Title"] = "Wybierz karnet";
+    var klub = ViewBag.Klub as KlubDto;
+}
+
+<section class="container my-5">
+
+    <a asp-controller="Karnety" asp-action="KupKarnet" class="text-decoration-none">
+        ← Zmień klub
+    </a>
+
+    <div class="mt-4">
+        <h1 class="fw-bold mb-1">Wybierz karnet</h1>
+        <p class="text-muted mb-4">@klub?.Nazwa — @klub?.Miasto, @klub?.Ulica</p>
+
+        @if (Model?.Any() == true)
+        {
+            <div class="row g-4">
+                @foreach (var r in Model)
+                {
+                    var isFeatured = r.TypRozliczenia == "Okresowe" && r.OkresDni == 365;
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="pricing-card h-100 @(isFeatured ? "featured" : "")">
+                            <h5 class="pricing-title">@r.Nazwa</h5>
+
+                            @if (!string.IsNullOrWhiteSpace(r.Opis))
+                            {
+                                <p class="text-muted">@r.Opis</p>
+                            }
+
+                            <div class="pricing-price">
+                                @if (r.Cena.HasValue)
+                                {
+                                    <span class="from">od</span>
+                                    <span class="value">@r.Cena.Value.ToString("0.00")</span>
+                                    <span>zł</span>
+                                }
+                                else
+                                {
+                                    <span class="value fs-5">Cena ustalana indywidualnie</span>
+                                }
+                            </div>
+
+                            <div class="text-muted small mb-1">
+                                Typ: @r.TypRozliczenia
+                            </div>
+
+                            @if (r.TypRozliczenia == "Okresowe" && r.OkresDni.HasValue)
+                            {
+                                <div class="text-muted small mb-3">
+                                    Okres: @r.OkresDni dni
+                                </div>
+                            }
+                            else if (r.TypRozliczenia == "NaWejścia" && r.LiczbaWejsc.HasValue)
+                            {
+                                <div class="text-muted small mb-3">
+                                    Liczba wejść: @r.LiczbaWejsc
+                                </div>
+                            }
+                            else if (r.TypRozliczenia == "Jednorazowe")
+                            {
+                                <div class="text-muted small mb-3">
+                                    Dostęp jednorazowy
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-muted small mb-3">
+                                    Szczegóły dostępne po wyborze
+                                </div>
+                            }
+
+                            <a class="btn btn-primary w-100"
+                               asp-controller="Karnety"
+                               asp-action="PodsumowanieZakupu"
+                               asp-route-klubId="@klub?.KlubId"
+                               asp-route-rodzajId="@r.RodzajCzlonkostwaId">
+                                Wybierz
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="text-center text-muted py-5">
+                Brak dostępnych karnetów dla wybranego klubu.
+            </div>
+        }
+    </div>
+
+</section>

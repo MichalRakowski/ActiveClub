@@ -1,0 +1,134 @@
+﻿@using ActiveClub.Shared.DTOs.Kluby
+@using ActiveClub.Shared.DTOs.RodzajeCzlonkostwa
+@model RodzajCzlonkostwaDto
+
+@{
+    ViewData["Title"] = "Podsumowanie zakupu";
+    var klub = ViewBag.Klub as KlubDto;
+}
+
+<section class="container my-5">
+
+    <a class="text-decoration-none"
+       asp-controller="Karnety"
+       asp-action="WybierzKarnet"
+       asp-route-klubId="@klub?.KlubId">
+        ← Zmień karnet
+    </a>
+
+    <div class="mt-4">
+
+        <h1 class="fw-bold mb-3">
+            Podsumowanie zakupu
+        </h1>
+
+        <div class="card shadow-sm border-0 rounded-4 mb-3">
+
+            <div class="card-body">
+
+                <div class="fw-bold fs-5">
+                    @Model.Nazwa
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(Model.Opis))
+                {
+                    <div class="text-muted">
+                        @Model.Opis
+                    </div>
+                }
+
+                <hr />
+
+                <div>
+                    <span class="fw-semibold">Klub:</span>
+                    @klub?.Nazwa
+                </div>
+
+                <div>
+                    <span class="fw-semibold">Adres:</span>
+                    @klub?.Miasto, @klub?.Ulica
+                </div>
+
+                <div>
+                    <span class="fw-semibold">Kod:</span>
+                    @Model.Kod
+                </div>
+
+                <div>
+                    <span class="fw-semibold">Typ rozliczenia:</span>
+                    @Model.TypRozliczenia
+                </div>
+
+                @if (Model.TypRozliczenia == "Okresowe" && Model.OkresDni.HasValue)
+                {
+                    <div>
+                        <span class="fw-semibold">Okres:</span>
+                        @Model.OkresDni dni
+                    </div>
+                }
+
+                @if (Model.TypRozliczenia == "NaWejścia" && Model.LiczbaWejsc.HasValue)
+                {
+                    <div>
+                        <span class="fw-semibold">Liczba wejść:</span>
+                        @Model.LiczbaWejsc
+                    </div>
+                }
+
+                @if (Model.TypRozliczenia == "Jednorazowe")
+                {
+                    <div>
+                        <span class="fw-semibold">Dostęp:</span>
+                        Jednorazowy
+                    </div>
+                }
+
+                <div class="fs-4 fw-semibold text-primary mt-3">
+                    @(Model.Cena.HasValue
+                        ? $"{Model.Cena.Value:0.00} zł"
+                        : "Cena ustalana indywidualnie")
+                </div>
+
+            </div>
+
+        </div>
+
+        @if (!(User?.Identity?.IsAuthenticated ?? false))
+        {
+            <div class="alert alert-warning">
+
+                Aby kupić karnet, musisz się zalogować.
+
+                <a class="ms-2"
+                   asp-controller="Konto"
+                   asp-action="Logowanie">
+                    Zaloguj się
+                </a>
+
+            </div>
+        }
+        else
+        {
+            <form method="get"
+                  asp-controller="Karnety"
+                  asp-action="Platnosc">
+
+                <input type="hidden"
+                       name="klubId"
+                       value="@klub?.KlubId" />
+
+                <input type="hidden"
+                       name="rodzajId"
+                       value="@Model.RodzajCzlonkostwaId" />
+
+                <button type="submit"
+                        class="btn btn-primary w-100">
+                    Przejdź do płatności
+                </button>
+
+            </form>
+        }
+
+    </div>
+
+</section>

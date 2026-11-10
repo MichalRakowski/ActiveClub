@@ -1,0 +1,121 @@
+﻿<local:WszystkieViewBase x:Class="ActiveClub.Firma.Views.WszystkieCzlonkostwaUzytkownikaView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:ActiveClub.Firma.Views"
+                       mc:Ignorable="d"
+                       d:DesignHeight="450"
+                       d:DesignWidth="1400">
+
+    <Border Background="#2D3E50" CornerRadius="8" Padding="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        Margin="0,0,0,8">
+
+                <Button Content="Zarejestruj wejście"
+                        Command="{Binding DodajWejscieCommand}"
+                        Margin="0,0,8,0"
+                        Padding="10,6"/>
+
+                <Button Content="Cofnij wejście"
+                        Command="{Binding CofnijWejscieCommand}"
+                        Padding="10,6"/>
+                <Button Content="Anuluj przeterminowane"
+        Command="{Binding AnulujPrzeterminowaneCommand}"
+        Margin="8,0,0,0"
+        Padding="10,6"/>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1"
+                      ItemsSource="{Binding List}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      HeadersVisibility="Column"
+                      GridLinesVisibility="None"
+                      Background="#2D3E50"
+                      Foreground="White"
+                      BorderThickness="0"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      AlternationCount="2">
+
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#455A64"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#223040"/>
+                        <Setter Property="Padding" Value="8,6"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="8,6"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#223040"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#2C3E50"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#2C3E50"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#455A64"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding CzlonkostwoId}" Width="*"/>
+                    <DataGridTextColumn Header="Użytkownik" Binding="{Binding UzytkownikNazwa}" Width="2*"/>
+                    <DataGridTextColumn Header="Oferta" Binding="{Binding OfertaKlubuCzlonkostwoNazwa}" Width="2*"/>
+                    <DataGridTextColumn Header="Rodzaj" Binding="{Binding RodzajCzlonkostwaNazwa}" Width="2*"/>
+                    <DataGridTextColumn Header="Klub" Binding="{Binding KlubNazwa}" Width="2*"/>
+                    <DataGridTextColumn Header="Data od" Binding="{Binding StartAt}" Width="*"/>
+                    <DataGridTextColumn Header="Data do" Binding="{Binding EndAt}" Width="*"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                    <DataGridTextColumn Header="Cena" Binding="{Binding CenaZakupu}" Width="*"/>
+                    <DataGridTextColumn Header="Zamówienie" Binding="{Binding ZamowienieNazwa}" Width="*"/>
+
+                    <DataGridTextColumn Header="Limit wejść"
+                                        Binding="{Binding LiczbaWejscLimit}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Wykorzystane"
+                                        Binding="{Binding LiczbaWejscWykorzystanych}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Pozostało"
+                                        Binding="{Binding PozostaloWejsc}"
+                                        Width="*"/>
+
+                    <DataGridTextColumn Header="Nadane przez" Binding="{Binding NadanePrzezUzytkownikNazwa}" Width="2*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Border>
+</local:WszystkieViewBase>

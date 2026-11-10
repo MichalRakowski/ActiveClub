@@ -1,0 +1,98 @@
+﻿<local:JedenViewBase x:Class="ActiveClub.Firma.Views.RaportView"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:local="clr-namespace:ActiveClub.Firma.Views"
+                     mc:Ignorable="d"
+                     d:DesignHeight="560"
+                     d:DesignWidth="850">
+
+    <Border Background="#2D3E50" CornerRadius="8" Padding="12">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Margin="0,6,12,6" Foreground="White" Content="Raport"/>
+            <ComboBox Grid.Column="1" Grid.Row="0"
+                      Margin="0,6,0,6"
+                      ItemsSource="{Binding DefinicjeRaportow}"
+                      DisplayMemberPath="Nazwa"
+                      SelectedValuePath="Id"
+                      SelectedValue="{Binding RaportDefinicjaId, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="1" Margin="0,6,12,6" Foreground="White" Content="Format"/>
+            <ComboBox Grid.Column="1" Grid.Row="1"
+                      Margin="0,6,0,6"
+                      ItemsSource="{Binding Formaty}"
+                      DisplayMemberPath="Nazwa"
+                      SelectedValuePath="Nazwa"
+                      SelectedValue="{Binding Format, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Margin="0,6,12,6" Foreground="White" Content="Data od"/>
+            <DatePicker Grid.Column="1" Grid.Row="2"
+                        Margin="0,6,0,6"
+                        SelectedDate="{Binding DataOd, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="3" Margin="0,6,12,6" Foreground="White" Content="Data do"/>
+            <DatePicker Grid.Column="1" Grid.Row="3"
+                        Margin="0,6,0,6"
+                        SelectedDate="{Binding DataDo, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Grid.Column="0" Grid.Row="4" Margin="0,6,12,6" Foreground="White" Content="Klub"/>
+            <Grid Grid.Column="1" Grid.Row="4" Margin="0,6,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="130"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+             Margin="0,0,8,0"
+             Padding="8,6"
+             Background="#223040"
+             Foreground="White"
+             BorderBrush="#455A64"
+             IsReadOnly="True"
+             Text="{Binding SelectedKlubNazwa, Mode=OneWay}"/>
+
+                <Button Grid.Column="1"
+            Content="Wybierz klub"
+            Command="{Binding WybierzKlubCommand}"
+            Padding="8,6"/>
+            </Grid>
+
+            <Label Grid.Column="0" Grid.Row="5" Margin="0,6,12,6" Foreground="White" Content="Trener"/>
+            <Grid Grid.Column="1" Grid.Row="5" Margin="0,6,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="0"
+             Margin="0,0,8,0"
+             Padding="8,6"
+             Background="#223040"
+             Foreground="White"
+             BorderBrush="#455A64"
+             IsReadOnly="True"
+             Text="{Binding SelectedTrenerNazwa, Mode=OneWay}"/>
+
+                <Button Grid.Column="1"
+            Content="Wybierz trenera"
+            Command="{Binding WybierzTreneraCommand}"
+            Padding="8,6"/>
+            </Grid>
+        </Grid>
+    </Border>
+</local:JedenViewBase>

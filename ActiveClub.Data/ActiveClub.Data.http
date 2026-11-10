@@ -1,0 +1,6 @@
+@ActiveClub.Data_HostAddress = http://localhost:5032
+
+GET {{ActiveClub.Data_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

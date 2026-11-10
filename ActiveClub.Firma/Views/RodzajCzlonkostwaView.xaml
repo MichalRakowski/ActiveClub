@@ -1,0 +1,194 @@
+﻿<local:JedenViewBase x:Class="ActiveClub.Firma.Views.RodzajCzlonkostwaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ActiveClub.Firma.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="650" d:DesignWidth="900">
+
+    <Border Background="#2D3E50"
+            CornerRadius="8"
+            Padding="12">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- KOD -->
+                <Label Grid.Row="0" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Kod"/>
+
+                <TextBox Grid.Row="0" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     MaxLength="50"
+                     Text="{Binding Kod, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- NAZWA -->
+                <Label Grid.Row="1" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Nazwa"/>
+
+                <TextBox Grid.Row="1" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     MaxLength="160"
+                     Text="{Binding Nazwa, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- OPIS -->
+                <Label Grid.Row="2" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Top"
+                   Content="Opis"/>
+
+                <TextBox Grid.Row="2" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto"
+                     MinHeight="100"
+                     MaxLength="500"
+                     Text="{Binding Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- CENA -->
+                <Label Grid.Row="3" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Cena"/>
+
+                <TextBox Grid.Row="3" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     Text="{Binding Cena, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+
+                <!-- TYP ROZLICZENIA -->
+                <Label Grid.Row="4" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Typ rozliczenia"/>
+
+                <TextBox Grid.Row="4" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     MaxLength="50"
+                     Text="{Binding TypRozliczenia, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- OKRES DNI -->
+                <Label Grid.Row="5" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Okres (dni)"/>
+
+                <TextBox Grid.Row="5" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     Text="{Binding OkresDni, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+
+                <!-- LICZBA WEJŚĆ -->
+                <Label Grid.Row="6" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Liczba wejść"/>
+
+                <TextBox Grid.Row="6" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     Text="{Binding LiczbaWejsc, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"/>
+
+                <!-- CZY AKTYWNY -->
+                <Label Grid.Row="7" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Aktywny"/>
+
+                <CheckBox Grid.Row="7" Grid.Column="1"
+                      Margin="0,6,0,6"
+                      Foreground="White"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding CzyAktywny, UpdateSourceTrigger=PropertyChanged}"
+                      Content="Tak"/>
+
+                <!-- CZY WIDOCZNE ONLINE -->
+                <Label Grid.Row="8" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Widoczne online"/>
+
+                <CheckBox Grid.Row="8" Grid.Column="1"
+                      Margin="0,6,0,6"
+                      Foreground="White"
+                      VerticalAlignment="Center"
+                      IsChecked="{Binding CzyWidoczneOnline, UpdateSourceTrigger=PropertyChanged}"
+                      Content="Tak"/>
+
+                <!-- DATA UTWORZENIA -->
+                <Label Grid.Row="9" Grid.Column="0"
+                   Margin="0,6,12,6"
+                   Foreground="White"
+                   VerticalAlignment="Center"
+                   Content="Data utworzenia"/>
+
+                <TextBox Grid.Row="9" Grid.Column="1"
+                     Margin="0,6,0,6"
+                     Padding="8,6"
+                     Background="#223040"
+                     Foreground="White"
+                     BorderBrush="#455A64"
+                     IsReadOnly="True"
+                     Text="{Binding DataUtworzenia, StringFormat={}{0:yyyy-MM-dd HH:mm}}"/>
+
+            </Grid>
+        </ScrollViewer>
+    </Border>
+</local:JedenViewBase>

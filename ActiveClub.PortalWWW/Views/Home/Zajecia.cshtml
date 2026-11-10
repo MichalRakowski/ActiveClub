@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ActiveClub.Shared.DTOs.Zajecia.ZajecieDto>
+
+<section class="container my-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Zajęcia grupowe</h1>
+        <p class="text-muted">
+            Wybierz trening dopasowany do Twoich celów
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        @foreach (var z in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+
+                    <div class="card-body">
+
+                        <h4 class="fw-bold">
+                            @z.Nazwa
+                        </h4>
+
+                        <p class="text-muted mb-0">
+                            @z.Opis
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
+</section>

@@ -1,0 +1,85 @@
+﻿<local:WszystkieViewBase x:Class="ActiveClub.Firma.Views.WszystkieZamowieniaView"
+                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                       xmlns:local="clr-namespace:ActiveClub.Firma.Views"
+                       mc:Ignorable="d"
+                       d:DesignHeight="450"
+                       d:DesignWidth="1300">
+
+    <Border Background="#2D3E50" CornerRadius="8" Padding="8">
+        <DataGrid ItemsSource="{Binding List}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="None"
+                  Background="#2D3E50"
+                  Foreground="White"
+                  BorderThickness="0"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  AlternationCount="2">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#455A64"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="BorderBrush" Value="#223040"/>
+                    <Setter Property="Padding" Value="8,6"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="8,6"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="#223040"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="SnapsToDevicePixels" Value="True"/>
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="#2C3E50"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#2C3E50"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#455A64"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ZamowienieId}" Width="*"/>
+                <DataGridTextColumn Header="Numer" Binding="{Binding NumerZamowienia}" Width="2*"/>
+                <DataGridTextColumn Header="UżytkownikId" Binding="{Binding UzytkownikId}" Width="*"/>
+                <DataGridTextColumn Header="KlubId" Binding="{Binding KlubId}" Width="*"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                <DataGridTextColumn Header="Suma brutto" Binding="{Binding SumaBrutto}" Width="*"/>
+                <DataGridTextColumn Header="Kwota rabatu" Binding="{Binding KwotaRabatu}" Width="*"/>
+                <DataGridTextColumn Header="Waluta" Binding="{Binding Waluta}" Width="*"/>
+                <DataGridTextColumn Header="MetodaPlatnosciId" Binding="{Binding MetodaPlatnosciId}" Width="*"/>
+                <DataGridTextColumn Header="RabatId" Binding="{Binding RabatId}" Width="*"/>
+                <DataGridTextColumn Header="Typ kanału" Binding="{Binding TypKanalu}" Width="*"/>
+                <DataGridTextColumn Header="Data utworzenia" Binding="{Binding DataUtworzenia}" Width="*"/>
+                <DataGridTextColumn Header="Data opłacenia" Binding="{Binding DataOplacenia}" Width="*"/>
+                <DataGridTextColumn Header="UtworzylUzytkownikId" Binding="{Binding UtworzylUzytkownikId}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Border>
+</local:WszystkieViewBase>
