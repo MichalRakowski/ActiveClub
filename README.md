@@ -22,3 +22,14 @@ ActiveClub is a fitness club management system I built for my engineering degree
 #### Add a membership type
 
 ![Form for adding a membership type in the ActiveClub desktop application](desktop-membership-form.png)
+#### Personal trainers and club news
+
+![Personal trainer selection, member reviews, and club news](web-trainers.png)
+
+#### Member sign-in
+
+![Member sign-in page with an option to create an account](web-login.png)
+
+#### Member account and passes
+
+![Member account showing active and cancelled gym passes](web-member-account.png)
